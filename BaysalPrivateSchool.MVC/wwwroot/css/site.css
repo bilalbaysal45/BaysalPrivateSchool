@@ -31,11 +31,12 @@ body {
   align-items: center;
 }
 
-.my-d-flex li{
+.my-d-flex li {
   text-decoration: none;
   list-style: none;
 
 }
+
 .my-card {
   display: flex;
   flex-direction: column;
@@ -43,7 +44,7 @@ body {
   align-items: center;
   width: 32%;
   border: 1px solid black;
-  height: 33vh;
+  height: 300px;
   margin: 0 5px;
   box-shadow: 0 5px 5px grey;
   padding: 10px;
@@ -60,11 +61,39 @@ body {
 
 .my-card:hover {
   width: 33%;
-  height: 34vh;
+  height: 301px;
 }
 
 #slidepanel {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 0px;
+  height: 100%;
+}
+
+.child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto;
+  width: 100%;
+  height: 30vh;
+}
+.child:hover{
+  background-color: rgba(128, 128, 128,.5) !important;
+}
+.news-header {
+  width: 100%;
+  height: 8vh;
+}
+.my-card-container{
+  /*bootstrap card dışı gerekirse*/
 }

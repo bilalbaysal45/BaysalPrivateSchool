@@ -2,7 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container-fluid">
+    <div class="parent">
+        <div class="child bg-dark text-light"><a class="nav-link" href="">Duyurular</a></div>
+        <div class="child bg-dark text-light"><a class="nav-link" href="">Foto Galeri</a></div>
+        <div class="child bg-dark text-light"><a class="nav-link" href="">Video Galeri</a></div>
+        <div class="child bg-dark text-light"><a class="nav-link" href="">Tanıtım Filmleri</a></div>
+    </div>
+    <div class="news-header bg-primary mt-5 d-flex justify-content-center align-items-center">
+        <h1 class="">Haberler</h1>
+    </div>
+    @* alttaki card'a veritabınında gelmesini planlıyorum haberlerin *@
+    <div class="my-card-container my-2">
+        <div class="card" style="width: 18rem;">
+            <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
 </div>
