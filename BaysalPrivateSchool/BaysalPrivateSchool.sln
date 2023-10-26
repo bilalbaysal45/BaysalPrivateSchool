@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrivateSchool.Data", "Priva
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrivateSchool.Entity", "PrivateSchool.Entity\PrivateSchool.Entity.csproj", "{68C4AA85-AC71-474D-9D51-DD61C6BF1BA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateSchool.Shared", "PrivateSchool.Shared\PrivateSchool.Shared.csproj", "{C2D257B2-7D55-4079-89F1-D71DEB1DD124}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{68C4AA85-AC71-474D-9D51-DD61C6BF1BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68C4AA85-AC71-474D-9D51-DD61C6BF1BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68C4AA85-AC71-474D-9D51-DD61C6BF1BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D257B2-7D55-4079-89F1-D71DEB1DD124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D257B2-7D55-4079-89F1-D71DEB1DD124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D257B2-7D55-4079-89F1-D71DEB1DD124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D257B2-7D55-4079-89F1-D71DEB1DD124}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

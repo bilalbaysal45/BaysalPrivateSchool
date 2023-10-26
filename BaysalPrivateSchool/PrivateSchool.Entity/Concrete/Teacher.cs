@@ -8,6 +8,6 @@ namespace PrivateSchool.Entity.Concrete
 {
     public class Teacher : BaseEntity
     {
-        
+        public decimal MonthlyFee { get; set; }
     }
 }

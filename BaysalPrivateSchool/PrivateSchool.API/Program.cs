@@ -1,9 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using PrivateSchool.Business.Abstract;
+using PrivateSchool.Business.Concrete;
+using PrivateSchool.Data.Abstract;
+using PrivateSchool.Data.Concrete.EfCore.Contexts;
+using PrivateSchool.Data.Concrete.EfCore.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddDbContext<PrivateSchoolDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
+
+builder.Services.AddScoped<ITeacherRepository,EfCoreTeacherRepository>();
+builder.Services.AddScoped<ITeacherService, TeacherManager>();
+
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
