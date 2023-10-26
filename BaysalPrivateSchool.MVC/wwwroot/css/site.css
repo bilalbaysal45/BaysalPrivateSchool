@@ -1,0 +1,70 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.my-d-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-d-flex li{
+  text-decoration: none;
+  list-style: none;
+
+}
+.my-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 32%;
+  border: 1px solid black;
+  height: 33vh;
+  margin: 0 5px;
+  box-shadow: 0 5px 5px grey;
+  padding: 10px;
+}
+
+.my-card input {
+  border-radius: 5px;
+}
+
+.my-card section {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-card:hover {
+  width: 33%;
+  height: 34vh;
+}
+
+#slidepanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

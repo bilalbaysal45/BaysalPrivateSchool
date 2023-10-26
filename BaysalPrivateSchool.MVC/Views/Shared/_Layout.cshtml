@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BaysalPrivateSchool.MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BaysalPrivateSchool.MVC.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="">
+        <div class="">
+            <div id="slidepanel">
+                <div class="my-card">
+                    <h1>Teachers Login Here</h1>
+                    <form action="#" method="post">
+                        <section>
+                            <h3>Teachers Login Form</h3>
+                            <label for="teachername">Username:</label>
+                            <input type="text" name="teachername" id="teachername" value="" />
+                            <label for="teacherpass">Password:</label>
+                            <input type="password" name="teacherpass" id="teacherpass" value="" />
+                            <input class="btn btn-sm btn-primary my-1" type="submit" name="teacherlogin" id="teacherlogin"
+                                value="Login" />
+                        </section>
+                    </form>
+                </div>
+                <div class="my-card last">
+                    <h1>Students Login Here</h1>
+                    <form action="#" method="post">
+                        <section>
+                            <h3>Students Login Form</h3>
+                            <label for="pupilname">Username:</label>
+                            <input type="text" name="pupilname" id="pupilname" value="" />
+                            <label for="pupilpass">Password:</label>
+                            <input type="password" name="pupilpass" id="pupilpass" value="" />
+                            <input class="btn btn-sm btn-primary my-1" type="submit" name="pupillogin" id="pupillogin"
+                                value="Login" />
+                        </section>
+                    </form>
+                </div>
+                <br class="clear" />
+            </div>
+            <div id="loginpanel">
+                <ul class="my-d-flex py-2">
+                    <li class="">Log In Here &raquo;</li>
+                    <li class="" id="toggle">
+                        <a id="slideit" href="#">Personal</a>
+                        <a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a>
+                    </li>
+                </ul>
+            </div>
+            <br class="clear" />
+        </div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BaysalPrivateSchool</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                asp-action="Privacy">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                asp-action="Privacy">Contact</a>
+                        </li>
+                    </ul>
+                    <a class="bg-danger text-light" asp-area="" asp-controller="" asp-action="">ApplyJob</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - BaysalPrivateSchool.MVC - <a asp-area="" asp-controller="Home"
+                asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
