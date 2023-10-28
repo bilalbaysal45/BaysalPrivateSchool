@@ -141,6 +141,6 @@ body {
   grid-row-gap: 10px;
 }
 
-.about-header {
+/* .about-header {
   grid-area: 1 / 1 / 2 / 3;
-}
+} */

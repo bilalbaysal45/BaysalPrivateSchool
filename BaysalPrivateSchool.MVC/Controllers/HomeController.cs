@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BaysalPrivateSchool.MVC.Models;
+using BaysalPrivateSchool.MVC.Data;
 
 namespace BaysalPrivateSchool.MVC.Controllers;
 
@@ -11,8 +12,9 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    public async Task<IActionResult> Privacy()
     {
-        return View();
+        var info = await SchoolInfoDAL.GetAllSchoolInfos();
+        return View(info);
     }
 }

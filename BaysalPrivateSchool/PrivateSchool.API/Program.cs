@@ -14,6 +14,11 @@ builder.Services.AddDbContext<PrivateSchoolDbContext>(options => options.UseSqli
 builder.Services.AddScoped<ITeacherRepository,EfCoreTeacherRepository>();
 builder.Services.AddScoped<ITeacherService, TeacherManager>();
 
+builder.Services.AddScoped<ISchoolInfoRepository, EfCoreSchoolInfoRepository>();
+builder.Services.AddScoped<ISchoolInfoService, SchoolInfoManager>();
+
+
+
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

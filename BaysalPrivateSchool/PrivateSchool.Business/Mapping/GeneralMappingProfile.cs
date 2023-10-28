@@ -13,6 +13,7 @@ namespace PrivateSchool.Business.mapping
         public GeneralMappingProfile()
         {
             CreateMap<Teacher,TeacherDto>().ReverseMap();
+            CreateMap<SchoolInfo, SchoolInfoDto>().ReverseMap();
         }
     }
 }

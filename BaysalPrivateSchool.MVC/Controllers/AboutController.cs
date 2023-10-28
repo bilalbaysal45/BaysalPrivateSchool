@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BaysalPrivateSchool.MVC.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -10,9 +11,10 @@ namespace BaysalPrivateSchool.MVC.Controllers
 {
     public class AboutController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var info = await SchoolInfoDAL.GetAllSchoolInfos();
+            return View(info);
         }
 
     }
