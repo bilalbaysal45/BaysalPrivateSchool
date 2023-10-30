@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrivateSchool.Data.Concrete.EfCore.Contexts;
 
@@ -10,9 +11,11 @@ using PrivateSchool.Data.Concrete.EfCore.Contexts;
 namespace PrivateSchool.Data.Migrations
 {
     [DbContext(typeof(PrivateSchoolDbContext))]
-    partial class PrivateSchoolDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231030112459_DepartmentTablo")]
+    partial class DepartmentTablo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");

@@ -8,6 +8,6 @@ namespace PrivateSchool.Data.Abstract
 {
     public interface ITeacherRepository : IGenericRepository<Teacher>
     {
-        // Ekstralar
+        List<Teacher> GetTeachersWithDepartment();
     }
 }

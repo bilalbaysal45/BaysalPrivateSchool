@@ -35,5 +35,24 @@ namespace PrivateSchool.Business.Concrete
             }
             return response;
         }
+
+        public ResponseDto<List<TeacherDto>> GetTeachersWithDepartment()
+        {
+            var response = new ResponseDto<List<TeacherDto>>();
+            var teachers = _teacherRepository.GetTeachersWithDepartment();
+
+            if(teachers.Count != 0)
+            {
+                var teacherDtos = _mapper.Map<List<TeacherDto>>(teachers);
+                response.Data = teacherDtos;
+                response.Error = null;
+            }
+            else
+            {
+                response.Data = new List<TeacherDto>();
+                response.Error = "Not Found";
+            }
+            return response;
+        }
     }
 }

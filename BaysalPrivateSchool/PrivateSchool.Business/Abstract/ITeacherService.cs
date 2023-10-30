@@ -9,5 +9,6 @@ namespace PrivateSchool.Business.Abstract
     public interface ITeacherService
     {
         ResponseDto<List<TeacherDto>> GetAll();
+        ResponseDto<List<TeacherDto>> GetTeachersWithDepartment();
     }
 }

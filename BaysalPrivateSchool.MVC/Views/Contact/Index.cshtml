@@ -1,3 +1,4 @@
+@model SchoolInfoViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -12,18 +13,18 @@
             </div>
         </div>
         <h1>BaysalPrivateSchool Contact Infotmation</h1>
-        <div class="my-adress">
+        <div class="my-contact-item">
             <i class="fa-solid fa-location-dot"></i>
-            <p>bla bla mah. bla bla sk. Kadıköy/Istanbul</p>
+            <p>@Model.Note</p>
         </div>
-        <div class="my-phone">
+        <div class="my-contact-item">
             <i class="fa-solid fa-phone"></i>
-            <p>+905545556633</p>
+            <p>@Model.Phone</p>
 
         </div>
-        <div class="my-mail">
+        <div class="my-contact-item">
             <i class="fa-solid fa-envelope"></i>
-            <p>Info@Baysal.com</p>
+            <p>@Model.Mail</p>
 
         </div>
     </div>

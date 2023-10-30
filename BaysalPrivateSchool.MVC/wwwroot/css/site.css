@@ -160,3 +160,19 @@ body {
   display: inline-block;
   height: 100%;
 }
+.my-contact-item{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+.my-contact-item p{
+  padding-top: 12px;
+  padding-left: 7px;
+}
+
+.my-card-personel{
+  display: flex;
+  flex-direction: row;
+}

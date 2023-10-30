@@ -9,12 +9,12 @@ using Microsoft.Extensions.Logging;
 
 namespace BaysalPrivateSchool.MVC.Controllers
 {
-    public class ContactController : Controller
+    public class PersonelController : Controller
     {
         public async Task<IActionResult> Index()
         {
-            var response = await SchoolInfoDAL.GetAllSchoolInfos();
-            return View(response);
+            var personel = await PersonelDAL.GetTeachersWithDepartment();
+            return View(personel);
         }
     }
 }

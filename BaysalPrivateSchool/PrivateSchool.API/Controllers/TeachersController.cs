@@ -24,5 +24,12 @@ namespace PrivateSchool.API.Controllers
             var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
+        [HttpGet("/getTeachersWithDepartment")]
+        public IActionResult GetTeachersWithDepartment()
+        {
+            var response = _teacherManager.GetTeachersWithDepartment();
+            var jsonResponse = JsonSerializer.Serialize(response);
+            return Ok(jsonResponse);
+        }
     }
 }

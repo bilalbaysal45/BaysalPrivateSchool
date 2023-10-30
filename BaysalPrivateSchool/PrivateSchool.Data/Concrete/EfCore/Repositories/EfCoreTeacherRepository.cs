@@ -19,6 +19,14 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
         {
             get{return _dbContext as PrivateSchoolDbContext;}
         }
+        public List<Teacher> GetTeachersWithDepartment()
+        {
+            var teachers = Context
+                            .Teachers
+                            .Include(t => t.Department)
+                            .ToList();
+            return teachers;
+        }
         
     }
 }

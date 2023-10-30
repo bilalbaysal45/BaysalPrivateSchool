@@ -9,5 +9,8 @@ namespace PrivateSchool.Entity.Concrete
     public class Teacher : BaseEntity
     {
         public decimal MonthlyFee { get; set; }
+        public string CV { get; set; }
+        public int? DepartmentId { get; set; }
+        public Department Department { get; set; }
     }
 }

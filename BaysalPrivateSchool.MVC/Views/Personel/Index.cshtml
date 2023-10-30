@@ -1,0 +1,28 @@
+
+@model List<TeachersWithDepartmentViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Personeller</h1>
+
+@foreach(var person in Model){
+<div class="my-card-container my-2">
+    <div class="card my-card-personel w-100" style="width: 18rem;">
+        <div class="row w-100">
+            <div class="col-sm-3 col-">
+                <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">
+            </div>
+            <div class="col-sm-9 col-">
+                <div class="card-body">
+                    <h5 class="card-title">@person.Name</h5>
+                    <h5 class="card-title">@person.Department.Description</h5>
+                    <p class="card-text">@person.CV</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
