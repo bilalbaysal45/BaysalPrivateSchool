@@ -14,6 +14,7 @@ namespace PrivateSchool.Business.mapping
         {
             CreateMap<Teacher,TeacherDto>().ReverseMap();
             CreateMap<SchoolInfo, SchoolInfoDto>().ReverseMap();
+            CreateMap<StudentClub,StudentClubDto>().ReverseMap();
         }
     }
 }

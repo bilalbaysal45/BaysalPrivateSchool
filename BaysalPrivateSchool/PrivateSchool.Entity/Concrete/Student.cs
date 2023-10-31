@@ -6,14 +6,14 @@ using PrivateSchool.Entity.Abstract;
 
 namespace PrivateSchool.Entity.Concrete
 {
-    public class Student : BaseEntity
+    public class Student : BaseEntityPerson
     {
         public string _studentNumber;
         public string StudentNumber
         {
             get
             {
-                return $"{CreatedDate}0{Id}";
+                return $"{CreatedDate.Year}0{Id}";
             }
         }
         public int RightOfAbsence { get; set; } = 30;

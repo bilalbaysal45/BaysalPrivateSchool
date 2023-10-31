@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PrivateSchool.Entity.Abstract
+namespace PrivateSchool.Shared.Dtos
 {
-    public abstract class BaseEntity
+    public class DepartmentDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,6 +14,5 @@ namespace PrivateSchool.Entity.Abstract
         public bool IsDeleted { get; set; }
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         public virtual DateTime ModifiedDate { get; set; } = DateTime.Now;
-
     }
 }

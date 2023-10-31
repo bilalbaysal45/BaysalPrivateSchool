@@ -6,16 +6,16 @@ using PrivateSchool.Entity.Concrete;
 
 namespace PrivateSchool.Shared.Dtos
 {
-    public class TeacherDto
+    public class StudentClubDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime BirthDate { get; set; }
+        public string Description { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public decimal MonthlyFee { get; set; }
-        public string CV { get; set; }
-        public Department Department { get; set; }
-
+        public virtual DateTime CreatedDate { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
+        public List<Teacher> Teachers { get; set; }
+        public List<Student> Students { get; set; }
     }
 }

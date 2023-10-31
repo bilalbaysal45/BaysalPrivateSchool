@@ -17,6 +17,7 @@ namespace PrivateSchool.Data.Concrete.EfCore.Contexts
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<SchoolInfo> SchoolInfos { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<StudentClub> StudentClubs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

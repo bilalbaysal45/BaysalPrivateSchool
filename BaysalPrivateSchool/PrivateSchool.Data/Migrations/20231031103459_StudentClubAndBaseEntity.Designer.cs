@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrivateSchool.Data.Concrete.EfCore.Contexts;
 
@@ -10,9 +11,11 @@ using PrivateSchool.Data.Concrete.EfCore.Contexts;
 namespace PrivateSchool.Data.Migrations
 {
     [DbContext(typeof(PrivateSchoolDbContext))]
-    partial class PrivateSchoolDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231031103459_StudentClubAndBaseEntity")]
+    partial class StudentClubAndBaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -129,51 +132,9 @@ namespace PrivateSchool.Data.Migrations
                     b.Property<int>("RightOfAbsence")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("StudentClubId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("StudentClubId");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("PrivateSchool.Entity.Concrete.StudentClub", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StudentClubs");
                 });
 
             modelBuilder.Entity("PrivateSchool.Entity.Concrete.Teacher", b =>
@@ -219,23 +180,11 @@ namespace PrivateSchool.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("StudentClubId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("StudentClubId");
-
                     b.ToTable("Teachers");
-                });
-
-            modelBuilder.Entity("PrivateSchool.Entity.Concrete.Student", b =>
-                {
-                    b.HasOne("PrivateSchool.Entity.Concrete.StudentClub", null)
-                        .WithMany("Students")
-                        .HasForeignKey("StudentClubId");
                 });
 
             modelBuilder.Entity("PrivateSchool.Entity.Concrete.Teacher", b =>
@@ -244,22 +193,11 @@ namespace PrivateSchool.Data.Migrations
                         .WithMany("Teachers")
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("PrivateSchool.Entity.Concrete.StudentClub", null)
-                        .WithMany("Teachers")
-                        .HasForeignKey("StudentClubId");
-
                     b.Navigation("Department");
                 });
 
             modelBuilder.Entity("PrivateSchool.Entity.Concrete.Department", b =>
                 {
-                    b.Navigation("Teachers");
-                });
-
-            modelBuilder.Entity("PrivateSchool.Entity.Concrete.StudentClub", b =>
-                {
-                    b.Navigation("Students");
-
                     b.Navigation("Teachers");
                 });
 #pragma warning restore 612, 618

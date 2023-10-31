@@ -1,0 +1,57 @@
+@model List<StudentClubViewModel>
+@{
+    ViewData["Title"] = "Index";
+    string studentNames = "";
+    string teacherNames = "";
+
+}
+
+
+<h1>StudentClubs</h1>
+
+@foreach (var studentClub in Model)
+{
+    <div class="my-card-container my-2">
+        <div class="card my-card-personel w-100" style="width: 18rem;">
+            <div class="row w-100">
+                <div class="col-sm-2 col-">
+                    <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">
+                </div>
+                <div class="col-sm-10 col- d-flex">
+                    <div class="card-body">
+                        <h5 class="card-title">@studentClub.Name</h5>
+                        <h5 class="card-title">Teachers: @foreach (var teachers in studentClub.Teachers)
+                            {
+                                if (studentClub.Teachers[studentClub.Teachers.Count - 1].Id == teachers.Id)
+                                {
+                                    teacherNames += teachers.Name;
+                                }
+                                else
+                                {
+                                    teacherNames += teachers.Name + ", ";
+                                }
+                            }
+                            @teacherNames</h5>
+                        <p class="card-text">@studentClub.Description</p>
+                        <p class="card-text">Students: @foreach (var students in studentClub.Students)
+                            {
+                                if (studentClub.Students[studentClub.Students.Count - 1].Id == students.Id)
+                                {
+                                    studentNames += students.Name;
+                                }
+                                else
+                                {
+                                    studentNames += students.Name + ", ";
+                                }
+                            }
+                            @studentNames</p>
+                    </div>
+                    <button type="button" class="btn btn-primary m-2">Apply</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {studentNames = "";
+    teacherNames = "";}
+}

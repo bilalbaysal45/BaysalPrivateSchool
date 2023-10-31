@@ -17,8 +17,8 @@ builder.Services.AddScoped<ITeacherService, TeacherManager>();
 builder.Services.AddScoped<ISchoolInfoRepository, EfCoreSchoolInfoRepository>();
 builder.Services.AddScoped<ISchoolInfoService, SchoolInfoManager>();
 
-
-
+builder.Services.AddScoped<IStudentClubRepository, EfCoreStudentClubRepository>();
+builder.Services.AddScoped<IStudentClubService, StudentClubManager>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

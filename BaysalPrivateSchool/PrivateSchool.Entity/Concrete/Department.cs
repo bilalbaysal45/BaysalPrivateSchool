@@ -2,15 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PrivateSchool.Entity.Abstract;
 
 namespace PrivateSchool.Entity.Concrete
 {
-    public class Department
+    public class Department : BaseEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool IsActive { get; set; } = true;
-        public bool IsDeleted { get; set; } 
+        // public int TeacherId { get; set; }
+        // public List<Teacher> Teachers { get; set; }
     }
 }
