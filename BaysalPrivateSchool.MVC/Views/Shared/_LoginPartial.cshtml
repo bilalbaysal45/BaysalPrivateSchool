@@ -1,0 +1,43 @@
+
+<div class="">
+    <div id="slidepanel" class="row mt-5" style="display: none;">
+        <div class="my-card col-md-5 col-5">
+            <h1>Teachers Login Here</h1>
+            <form asp-controller="Personel" asp-action="Login" method="post" enctype="multipart/form-data">
+                <section>
+                    <h3>Teachers Login Form</h3>
+                    <label for="teacher-input">Email:</label>
+                    <input type="email" name="email" id="teacher-input" />
+                    <label for="teacher-pass">Password:</label>
+                    <input type="password" name="password" id="teacher-pass"/>
+                    <input class="btn btn-sm btn-primary my-1" type="submit" name="teacherlogin" id="teacherlogin"
+                        value="Login" />
+                </section>
+            </form>
+        </div>
+        <div class="my-card last col-md-5 col-5">
+            <h1>Students Login Here</h1>
+            <form method="post">
+                <section>
+                    <h3>Students Login Form</h3>
+                    <label for="student-input">Email:</label>
+                    <input type="email" name="student-input" id="student-input" />
+                    <label for="student-pass">Password:</label>
+                    <input type="password" name="student-pass" id="student-pass"  />
+                    <input class="btn btn-sm btn-primary my-1" type="submit" name="studentlogin" value="Login" />
+                </section>
+            </form>
+        </div>
+        <div class="text-center my-1 forget-p"><a class="text-primary " href="">ForgetPassword</a></div>
+    </div>
+    <div id="loginpanel" class="">
+        <ul class="my-d-flex py-2">
+            <li class="">Log In Here &raquo;</li>
+            <li class="" id="toggle">
+                <a id="slideit" href="#">Personal</a>
+                <a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a>
+            </li>
+        </ul>
+    </div>
+    <br class="clear" />
+</div>

@@ -10,5 +10,6 @@ namespace PrivateSchool.Business.Abstract
     {
         ResponseDto<List<TeacherDto>> GetAll();
         ResponseDto<List<TeacherDto>> GetTeachersWithDepartment();
+        ResponseDto<bool> Login(LoginDto loginDto);
     }
 }

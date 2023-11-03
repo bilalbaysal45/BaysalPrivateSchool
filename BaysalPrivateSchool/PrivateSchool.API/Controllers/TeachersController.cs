@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PrivateSchool.Business.Abstract;
+using PrivateSchool.Shared.Dtos;
 
 namespace PrivateSchool.API.Controllers
 {
@@ -29,6 +30,14 @@ namespace PrivateSchool.API.Controllers
         {
             var response = _teacherManager.GetTeachersWithDepartment();
             var jsonResponse = JsonSerializer.Serialize(response);
+            return Ok(jsonResponse);
+        }
+        [HttpPost("/login")]
+        public IActionResult Login(LoginDto loginDto)
+        {
+            var login = _teacherManager.Login(loginDto);
+            var jsonResponse = JsonSerializer.Serialize(login);
+            
             return Ok(jsonResponse);
         }
     }

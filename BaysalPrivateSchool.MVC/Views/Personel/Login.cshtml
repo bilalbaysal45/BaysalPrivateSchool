@@ -1,0 +1,14 @@
+@model bool
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div>@if(Model == true)
+    {
+        <div>Login Başarılı</div>
+    }
+    else
+    {
+        <div>Login Başarısız</div>
+    }
+    </div>

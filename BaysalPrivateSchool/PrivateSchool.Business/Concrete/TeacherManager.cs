@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using PrivateSchool.Business.Abstract;
@@ -53,6 +54,26 @@ namespace PrivateSchool.Business.Concrete
                 response.Error = "Not Found";
             }
             return response;
+        }
+        public ResponseDto<bool> Login(LoginDto loginDto)
+        {
+            var login = new ResponseDto<bool>();
+            var teachers = _teacherRepository.GetAll();
+            foreach(var teacher in teachers)
+            {
+                if(teacher.Email == loginDto.Email && teacher.Password == loginDto.Password)
+                {
+                    login.Data = true;
+                    login.Error = null;
+                    return login;
+                }
+                else{
+                    login.Data = false;
+                    login.Error = "Wrong Credentials";
+                    return login;
+                }
+            }
+            return login;
         }
     }
 }
