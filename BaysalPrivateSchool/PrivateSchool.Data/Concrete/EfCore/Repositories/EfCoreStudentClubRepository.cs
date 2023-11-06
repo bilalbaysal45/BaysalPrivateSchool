@@ -32,5 +32,21 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
                                 .ToList();
             return studentClubs;
         }
+        public List<StudentClub> GetStudentClubsWithNews()
+        {
+            var studentClubsWithNews = Context
+                                .StudentClubs
+                                .Include(sc => sc.Students)
+                                .Include(sc => sc.Teachers)
+                                .Include(sc => sc.StudentClubsNews)
+                                .ThenInclude(scn => scn.News)
+                                .ToList();
+            // studentClubsWithNews = Context
+            //                     .StudentClubs
+            //                     .Include(sc => sc.Teachers)
+            //                     .Include(sc => sc.Students)
+            //                     .ToList();
+            return studentClubsWithNews;
+        }
     }
 }

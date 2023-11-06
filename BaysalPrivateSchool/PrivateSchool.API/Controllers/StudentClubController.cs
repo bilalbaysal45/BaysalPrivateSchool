@@ -25,5 +25,12 @@ namespace PrivateSchool.API.Controllers
             var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
+        [HttpGet("/getStudentClubsWithNews")]
+        public IActionResult GetNewsWithStudentClubs()
+        {
+            var response = _studentClubManager.GetStudentClubsWithNews();
+            var jsonResponse = JsonSerializer.Serialize(response);
+            return Ok(jsonResponse);
+        }
     }
 }

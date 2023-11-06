@@ -9,5 +9,6 @@ namespace PrivateSchool.Business.Abstract
     public interface IStudentClubService
     {
         ResponseDto<List<StudentClubDto>> GetStudentClubWithStudentsAndTeachers();
+        ResponseDto<List<StudentClubDto>> GetStudentClubsWithNews();
     }
 }

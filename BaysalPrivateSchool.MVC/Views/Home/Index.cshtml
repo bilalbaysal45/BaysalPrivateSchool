@@ -1,8 +1,9 @@
-﻿@{
+﻿@model List<StudentClubsNewsViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container-fluid">
+< class="container-fluid">
     <div class="parent">
         <div class="child bg-dark text-light"><a class="nav-link" href="">Duyurular</a></div>
         <div class="child bg-dark text-light"><a class="nav-link" href="">Foto Galeri</a></div>
@@ -12,16 +13,29 @@
     <div class="news-header bg-primary mt-5 d-flex justify-content-center align-items-center">
         <h1 class="">Haberler</h1>
     </div>
+
     @* alttaki card'a veritabınında gelmesini planlıyorum haberlerin *@
-    <div class="my-card-container my-2">
-        <div class="card" style="width: 18rem;">
-            <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">HaberPhoto
-            <div class="card-body">
-                <h5 class="card-title">Haber title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+    @* Zaman Kalırsa Id'ye Göre Haberler Sayfasına yönlendirme Yapılacak *@
+    <div class="row">
+    @foreach(var studentClubs in Model)
+    {
+        foreach(var news in studentClubs.News)
+        {
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="my-card-container my-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">HaberPhoto
+                        <div class="card-body">
+                            <h4 class="card-title">@studentClubs.Name News</h4>
+                            <h6 class="card-title">@news.Title</h6>
+                            <p class="card-text">@news.Description</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+            }
+    }
+</div>
+    
 </div>

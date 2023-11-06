@@ -28,5 +28,24 @@ namespace BaysalPrivateSchool.MVC.Data
             }
             return rootStudentClubs.Data;
         }
+        public static async Task<List<StudentClubsNewsViewModel>> GetStudentClubsWithNews()
+        {
+            Root<List<StudentClubsNewsViewModel>> rootStudentClubsNews = new Root<List<StudentClubsNewsViewModel>>();
+            using(var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync("http://localhost:5156/getStudentClubsWithNews");
+                if(response.IsSuccessStatusCode)
+                {
+                    string contentResponse = await response.Content.ReadAsStringAsync();
+                    rootStudentClubsNews = JsonSerializer.Deserialize<Root<List<StudentClubsNewsViewModel>>>(contentResponse);
+                }
+                else
+                {
+                    rootStudentClubsNews = new Root<List<StudentClubsNewsViewModel>>();
+                }
+            }
+
+            return rootStudentClubsNews.Data;
+        }
     }
 }

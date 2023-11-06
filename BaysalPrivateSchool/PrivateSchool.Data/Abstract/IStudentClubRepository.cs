@@ -9,5 +9,6 @@ namespace PrivateSchool.Data.Abstract
     public interface IStudentClubRepository : IGenericRepository<StudentClub>
     {
         List<StudentClub> GetStudentClubsWithStudentsAndTeachers();
+        List<StudentClub> GetStudentClubsWithNews();
     }
 }

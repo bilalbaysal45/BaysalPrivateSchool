@@ -7,9 +7,10 @@ namespace BaysalPrivateSchool.MVC.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var studentClubsNews = await StudentClubDAL.GetStudentClubsWithNews(); 
+        return View(studentClubsNews);
     }
 
     public async Task<IActionResult> Privacy()

@@ -39,5 +39,27 @@ namespace PrivateSchool.Business.Concrete
             }
             return response;
         }
+
+        public ResponseDto<List<StudentClubDto>> GetStudentClubsWithNews()
+        {
+            var response = new ResponseDto<List<StudentClubDto>>();
+            var studentClubs = _studentClubRepository.GetStudentClubsWithNews();
+
+            if(studentClubs.Count != 0)
+            {
+                return new ResponseDto<List<StudentClubDto>>{
+                    Data = _mapper.Map<List<StudentClubDto>>(studentClubs),
+                    Error = null
+            };
+            }
+            else
+            {
+                return new ResponseDto<List<StudentClubDto>>{
+                    Data = new List<StudentClubDto>(),
+                    Error = "Not Found"
+                };
+            }
+        }
+        
     }
 }
