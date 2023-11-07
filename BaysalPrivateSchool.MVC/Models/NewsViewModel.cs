@@ -18,5 +18,9 @@ namespace BaysalPrivateSchool.MVC.Models
         public string Title { get; set; }
         [JsonPropertyName("IsActive")]
         public bool IsActive { get; set; }
+        [JsonPropertyName("ModifiedDate")]
+        public DateTime ModifiedDate { get; set; }
+        [JsonPropertyName("StudentClub")]
+        public StudentClubViewModel StudentClubs { get; set; }
     }
 }

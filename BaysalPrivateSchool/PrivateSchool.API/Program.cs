@@ -20,6 +20,9 @@ builder.Services.AddScoped<ISchoolInfoService, SchoolInfoManager>();
 builder.Services.AddScoped<IStudentClubRepository, EfCoreStudentClubRepository>();
 builder.Services.AddScoped<IStudentClubService, StudentClubManager>();
 
+builder.Services.AddScoped<INewsRepository,EfCoreNewsRepository>();
+builder.Services.AddScoped<INewsService,NewsManager>();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

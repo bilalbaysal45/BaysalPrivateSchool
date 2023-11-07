@@ -1,0 +1,20 @@
+@model NewsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-12">
+        <div class="my-card-container my-2">
+            <div class="card">
+                <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">HaberPhoto
+                <div class="card-body">
+                    <h1 class="card-title">@Model.Title</h1>
+                    <p class="card-text">@Model.Description</p>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

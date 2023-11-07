@@ -16,5 +16,6 @@ namespace PrivateSchool.Shared.Dtos
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public StudentClubDto StudentClub { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-< class="container-fluid">
+<div class="container-fluid">
     <div class="parent">
         <div class="child bg-dark text-light"><a class="nav-link" href="">Duyurular</a></div>
         <div class="child bg-dark text-light"><a class="nav-link" href="">Foto Galeri</a></div>
@@ -27,9 +27,8 @@
                         <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">HaberPhoto
                         <div class="card-body">
                             <h4 class="card-title">@studentClubs.Name News</h4>
-                            <h6 class="card-title">@news.Title</h6>
-                            <p class="card-text">@news.Description</p>
-                            <a href="#" class="btn btn-primary">Read More</a>
+                            <h6 class="card-text">@news.Title</h6>
+                            <a asp-controller="News" asp-action="Index" asp-route-id="@news.Id" class="btn btn-primary">Read More</a>
                         </div>
                     </div>
                 </div>

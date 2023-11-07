@@ -34,7 +34,7 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
 
         public TEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Set<TEntity>().Find(id);
         }
 
         public TEntity Update(TEntity entity)
