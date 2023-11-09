@@ -17,8 +17,7 @@ namespace PrivateSchool.Business.mapping
             CreateMap<SchoolInfo, SchoolInfoDto>().ReverseMap();
             CreateMap<News,NewsDto>();
             CreateMap<StudentClub, StudentClubDto>().ReverseMap();
-            //.ForMember(ndto => ndto.StudentClub,opt=>opt.MapFrom(x=>x.StudentClubsNews.Select(x=>x.StudentClub)))
-
+            CreateMap<Department,DepartmentDto>().ReverseMap();
 
             //CreateMap<StudentClub,StudentClubDto>().ReverseMap(); //Updated to Below
             CreateMap<StudentClub, StudentClubDto>()

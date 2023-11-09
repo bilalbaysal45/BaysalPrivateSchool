@@ -8,12 +8,14 @@ using PrivateSchool.Entity.Concrete;
 
 namespace PrivateSchool.Data.Concrete.EfCore.Contexts
 {
+    //Database
     public class PrivateSchoolDbContext : DbContext
     {
         public PrivateSchoolDbContext(DbContextOptions options) : base(options)
         {
 
         }
+        //Tablolar
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<SchoolInfo> SchoolInfos { get; set; }

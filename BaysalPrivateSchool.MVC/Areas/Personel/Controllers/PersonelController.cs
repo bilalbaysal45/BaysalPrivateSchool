@@ -4,22 +4,25 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using BaysalPrivateSchool.MVC.Data;
+using BaysalPrivateSchool.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
 {
     [Area("Personel")]
-    public class HomeController : Controller
+    public class PersonelController : Controller
     {
         public async Task<IActionResult> Index()
         {
-            var response = await PersonelDAL.GetTeachersWithDepartment();
-            return View(response);
-        }
-        public IActionResult Privacy()
-        {
+            var departments = await DepartmentDAL.GetAll();
+            ViewBag.Departments = departments;
             return View();
+        }
+        [HttpPost]
+        public IActionResult Create(AddTeacherViewModel newTeacher)
+        {
+            return View("Index");
         }
     }
 }
