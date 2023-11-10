@@ -37,8 +37,8 @@ namespace BaysalPrivateSchool.MVC.Data
 
             using (var httpClient = new HttpClient())
             {
-                var serializeProduct = JsonSerializer.Serialize(loginCredentials);
-                StringContent stringContent = new StringContent(serializeProduct, Encoding.UTF8, "application/json");
+                var serializeLogin = JsonSerializer.Serialize(loginCredentials);
+                StringContent stringContent = new StringContent(serializeLogin, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync("http://localhost:5156/login", stringContent);
                 if (response.IsSuccessStatusCode)
                 {
@@ -51,6 +51,24 @@ namespace BaysalPrivateSchool.MVC.Data
                 }
             }
             return false;
+        }
+
+        public static async Task<AddTeacherViewModel> Create(AddTeacherViewModel newTeacher)
+        {
+            Root<AddTeacherViewModel> rootAddedTeacher = new Root<AddTeacherViewModel>();
+            using (var httpClient = new HttpClient())
+            {
+                var serializeNewTeacher = JsonSerializer.Serialize(newTeacher);
+                StringContent stringContent = new StringContent(serializeNewTeacher,Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync("http://localhost:5156/addTeacher",stringContent);
+                if(response.IsSuccessStatusCode)
+                {
+                    string contentResponse = await response.Content.ReadAsStringAsync();
+                    rootAddedTeacher = JsonSerializer.Deserialize<Root<AddTeacherViewModel>>(contentResponse);
+                    return rootAddedTeacher.Data;
+                }
+            }
+            return null;
         }
     }
 }

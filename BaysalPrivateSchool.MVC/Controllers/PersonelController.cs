@@ -27,6 +27,7 @@ namespace BaysalPrivateSchool.MVC.Controllers
             if (ModelState.IsValid)
             {
                 login = await PersonelDAL.Login(loginCredentials);
+                ViewBag.Auth = login;
                 return View(login);
 
             }

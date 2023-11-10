@@ -20,8 +20,15 @@ namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(AddTeacherViewModel newTeacher)
+        public async Task<IActionResult> Create(AddTeacherViewModel newTeacher)
         {
+            if(ModelState.IsValid)
+            {
+                var addedTeacher = await PersonelDAL.Create(newTeacher);
+                return View(addedTeacher);
+            }
+            var departments = await DepartmentDAL.GetAll();
+            ViewBag.Departments = departments;
             return View("Index");
         }
     }

@@ -37,6 +37,21 @@ namespace PrivateSchool.Business.Concrete
             return response;
         }
 
+        public ResponseDto<TeacherDto> Create(AddTeacherDto addTeacherDto)
+        {
+            var addedTeacher = new Teacher();
+            addedTeacher = _mapper.Map<Teacher>(addTeacherDto);
+            addedTeacher.CreatedDate = DateTime.Now;
+            addedTeacher.ModifiedDate = DateTime.Now;
+            addedTeacher.IsDeleted = false;
+            var responseTeacher = _teacherRepository.Create(addedTeacher);
+            return new ResponseDto<TeacherDto>
+            {
+                Data = _mapper.Map<TeacherDto>(responseTeacher),
+                Error = null
+            };
+        }
+
         public ResponseDto<List<TeacherDto>> GetTeachersWithDepartment()
         {
             var response = new ResponseDto<List<TeacherDto>>();

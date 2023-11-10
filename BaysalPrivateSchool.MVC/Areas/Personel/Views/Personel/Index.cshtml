@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-md-12 col-12">
-        <form asp-area="Personel" asp-controller="Personel" asp-action="Index" method="post"
+        <form asp-area="Personel" asp-controller="Personel" asp-action="Create" method="post"
             enctype="multipart/form-data">
             <div class="row bg-primary">
                 <div class="col-12 text-start contact-us">
@@ -54,8 +54,8 @@
                 @foreach (var department in ViewBag.Departments)
                 {
                     <div class="form-check form-check-inline">
-                        <input asp-for="Department" class="form-check-input" type="radio" name="Department" id="department_@department.Id" value="@department.Id">
-                        <label asp-for="Department" class="form-check-label" for="department_@department.Id">@department.Name</label>
+                        <input asp-for="DepartmentId" class="form-check-input" type="radio" name="DepartmentId" id="department_@department.Id" value="@department.Id">
+                        <label asp-for="DepartmentId" class="form-check-label" for="department_@department.Id">@department.Name</label>
                     </div>
                 }
                 </div>
@@ -64,6 +64,12 @@
                 <div class="col-lg-12 col-12 d-flex justify-content-center align-item-center mt-3">
                     <input type="submit" class="btn btn-outline-success" value="Save"></input>
                 </div>
+                @if(Model != null)
+                {
+                <div class="col-lg-12 col-12 d-flex justify-content-center align-item-center mt-3">
+                    <h3>Personel Successfully Added.</h3>
+                </div>
+                }
             </div>
         </form>
     </div>

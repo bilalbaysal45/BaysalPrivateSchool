@@ -25,8 +25,11 @@ namespace BaysalPrivateSchool.MVC.Models
         [JsonPropertyName("CV")]
         [DisplayName("CV")]
         public string CV { get; set; }
-        
-        [JsonPropertyName("Department")]
-        public DepartmentViewModel Department { get; set; }
+
+        [JsonPropertyName("DepartmentId")]
+        [Required(ErrorMessage = "En az bir kategori seçilmelidir.")]
+        public int DepartmentId { get; set; }
+
     }
+  
 }
