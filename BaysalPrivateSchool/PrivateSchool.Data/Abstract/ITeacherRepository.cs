@@ -9,5 +9,6 @@ namespace PrivateSchool.Data.Abstract
     public interface ITeacherRepository : IGenericRepository<Teacher>
     {
         List<Teacher> GetTeachersWithDepartment();
+        int? GetTeacherWithDepartmentId(int teacherId);
     }
 }

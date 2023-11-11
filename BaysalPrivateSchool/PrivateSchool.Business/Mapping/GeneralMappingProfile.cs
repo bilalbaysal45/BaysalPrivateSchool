@@ -15,6 +15,7 @@ namespace PrivateSchool.Business.mapping
         {
             CreateMap<Teacher,TeacherDto>().ReverseMap();
             CreateMap<Teacher, AddTeacherDto>().ReverseMap();
+            CreateMap<Teacher, UpdateTeacherDto>().ReverseMap();
 
             CreateMap<SchoolInfo, SchoolInfoDto>().ReverseMap();
             CreateMap<News,NewsDto>();

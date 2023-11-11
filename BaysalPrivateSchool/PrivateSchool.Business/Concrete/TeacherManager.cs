@@ -36,6 +36,22 @@ namespace PrivateSchool.Business.Concrete
             }
             return response;
         }
+        public ResponseDto<TeacherDto> GetById(int id)
+        {
+            var response = new ResponseDto<TeacherDto>();
+            var teacher = _teacherRepository.GetById(id);
+            if(teacher != null)
+            {
+                response.Data = _mapper.Map<TeacherDto>(teacher);
+                response.Error = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Error = "Not Found";
+            }
+            return response;
+        }
 
         public ResponseDto<TeacherDto> Create(AddTeacherDto addTeacherDto)
         {
@@ -52,6 +68,20 @@ namespace PrivateSchool.Business.Concrete
             };
         }
 
+        public ResponseDto<TeacherDto> Update(UpdateTeacherDto updateTeacher)
+        {
+            if(updateTeacher != null)
+            {
+                var deparmentId = _teacherRepository.GetTeacherWithDepartmentId(updateTeacher.Id);
+                var teacher = _mapper.Map<Teacher>(updateTeacher);
+                teacher.DepartmentId =deparmentId;
+
+                var response = _teacherRepository.Update(teacher);
+                var teacherDto = _mapper.Map<TeacherDto>(response);
+                return new ResponseDto<TeacherDto>{Data = teacherDto, Error = "Success"};
+            }
+            return null;
+        }
         public ResponseDto<List<TeacherDto>> GetTeachersWithDepartment()
         {
             var response = new ResponseDto<List<TeacherDto>>();

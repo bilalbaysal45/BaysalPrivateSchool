@@ -10,7 +10,9 @@ namespace PrivateSchool.Business.Abstract
     public interface ITeacherService
     {
         ResponseDto<List<TeacherDto>> GetAll();
+        ResponseDto<TeacherDto> GetById(int id);
         ResponseDto<TeacherDto> Create(AddTeacherDto newTeacherDto);
+        ResponseDto<TeacherDto> Update(UpdateTeacherDto updateTeacher);
         ResponseDto<List<TeacherDto>> GetTeachersWithDepartment();
         ResponseDto<bool> Login(LoginDto loginDto);
     }

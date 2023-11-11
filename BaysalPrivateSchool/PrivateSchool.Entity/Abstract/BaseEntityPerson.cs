@@ -13,13 +13,7 @@ namespace PrivateSchool.Entity.Abstract
         public string Name { get{return FirstName + " " + LastName;} }
         public string Email { get; set; }
         public string Password { get; set; }
-        public virtual int Age
-        {
-            get
-            {
-                return DateTime.Now.Year - BirthDate.Year;
-            }
-        }
+        public virtual int Age { get {return DateTime.Now.Year - BirthDate.Year; } }
         public DateTime BirthDate { get; set; }
         public bool IsActive { get; set; } = true;
         public bool IsDeleted { get; set; }

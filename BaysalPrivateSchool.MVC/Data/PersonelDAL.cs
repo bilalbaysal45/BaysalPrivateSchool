@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using BaysalPrivateSchool.MVC.Areas.Personel.Models;
 using BaysalPrivateSchool.MVC.Models;
 
 namespace BaysalPrivateSchool.MVC.Data
@@ -66,6 +67,40 @@ namespace BaysalPrivateSchool.MVC.Data
                     string contentResponse = await response.Content.ReadAsStringAsync();
                     rootAddedTeacher = JsonSerializer.Deserialize<Root<AddTeacherViewModel>>(contentResponse);
                     return rootAddedTeacher.Data;
+                }
+            }
+            return null;
+        }
+        public static async Task<UpdateTeacherViewModel> Update(UpdateTeacherViewModel updateTeacher)
+        {
+            var rootUpdatedTeacher = new Root<UpdateTeacherViewModel>();
+            using(var httpClient = new HttpClient())
+            {
+                var serializeUpdateTeacher = JsonSerializer.Serialize(updateTeacher);
+                StringContent stringContent = new StringContent(serializeUpdateTeacher,Encoding.UTF8,"application/json");
+                var response = await httpClient.PutAsync("http://localhost:5156/updateTeacher", stringContent);
+                if(response.IsSuccessStatusCode)
+                {
+                    string contentResponse = await response.Content.ReadAsStringAsync();
+                    rootUpdatedTeacher = JsonSerializer.Deserialize<Root<UpdateTeacherViewModel>>(contentResponse);
+                    return rootUpdatedTeacher.Data;
+                }
+            }
+            return null;
+        }
+        public static async Task<UpdateTeacherViewModel> GetById(int id)
+        {
+            var rootTeacher = new Root<UpdateTeacherViewModel>();
+            using(var httpClient = new HttpClient())
+            {
+                // var serializeId = JsonSerializer.Serialize(id);
+                // StringContent stringContent = new StringContent(serializeId,Encoding.UTF8,"application/json");
+                var response = await httpClient.GetAsync($"http://localhost:5156/getTeacher/{id}");
+                if(response.IsSuccessStatusCode)
+                {
+                    string contentResponse = await response.Content.ReadAsStringAsync();
+                    rootTeacher = JsonSerializer.Deserialize<Root<UpdateTeacherViewModel>>(contentResponse);
+                    return rootTeacher.Data;
                 }
             }
             return null;

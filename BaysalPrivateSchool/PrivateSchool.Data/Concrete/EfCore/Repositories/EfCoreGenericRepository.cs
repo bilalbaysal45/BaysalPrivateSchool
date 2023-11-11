@@ -39,7 +39,9 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
 
         public TEntity Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Set<TEntity>().Update(entity);
+            _dbContext.SaveChanges();
+            return entity;
         }
     }
 }

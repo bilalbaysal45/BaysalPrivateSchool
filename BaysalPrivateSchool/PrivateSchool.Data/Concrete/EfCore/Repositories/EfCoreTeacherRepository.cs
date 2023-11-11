@@ -27,6 +27,14 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
                             .ToList();
             return teachers;
         }
+        public int? GetTeacherWithDepartmentId(int teacherId)
+        {
+            var teacher = Context.Teachers.AsNoTracking().SingleOrDefault(t=>t.Id==teacherId);
+            
+            
+            
+            return teacher.DepartmentId;
+        }
         
     }
 }

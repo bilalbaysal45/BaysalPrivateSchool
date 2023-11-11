@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Pipelines;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -25,10 +26,24 @@ namespace PrivateSchool.API.Controllers
             var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
+        [HttpGet("/getTeacher/{id}")]
+        public IActionResult GetById(int id)
+        {
+            var response = _teacherManager.GetById(id);
+            var jsonResponse = JsonSerializer.Serialize(response);
+            return Ok(jsonResponse);
+        }
         [HttpPost("/addTeacher")]
         public IActionResult Create(AddTeacherDto addTeacherDto)
         {
             var response = _teacherManager.Create(addTeacherDto);
+            var jsonResponse = JsonSerializer.Serialize(response);
+            return Ok(jsonResponse);
+        }
+        [HttpPut("/updateTeacher")]
+        public IActionResult Update(UpdateTeacherDto updateTeacher)
+        {
+            var response = _teacherManager.Update(updateTeacher);
             var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
