@@ -82,6 +82,11 @@ namespace PrivateSchool.Business.Concrete
             }
             return null;
         }
+        public void Delete(int teacherId)
+        {
+            var teacher = _teacherRepository.GetById(teacherId);
+            _teacherRepository.Delete(teacher);
+        }
         public ResponseDto<List<TeacherDto>> GetTeachersWithDepartment()
         {
             var response = new ResponseDto<List<TeacherDto>>();

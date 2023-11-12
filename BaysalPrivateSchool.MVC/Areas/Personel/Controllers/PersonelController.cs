@@ -49,5 +49,16 @@ namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
             var response = await PersonelDAL.Update(updatedTeacher);
             return RedirectToAction("Create","Personel", response); //Create' UpdateViewModel gitti
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await PersonelDAL.Delete(id);
+            if(response)
+            {
+                var teachers = await PersonelDAL.GetTeachersWithDepartment();
+                return RedirectToAction("Index","Home",teachers);
+            }  
+            return RedirectToAction("Create","Personel");
+        }
     }
 }

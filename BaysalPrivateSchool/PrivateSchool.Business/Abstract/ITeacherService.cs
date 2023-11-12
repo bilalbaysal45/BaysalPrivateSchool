@@ -13,6 +13,7 @@ namespace PrivateSchool.Business.Abstract
         ResponseDto<TeacherDto> GetById(int id);
         ResponseDto<TeacherDto> Create(AddTeacherDto newTeacherDto);
         ResponseDto<TeacherDto> Update(UpdateTeacherDto updateTeacher);
+        void Delete(int teacherId);
         ResponseDto<List<TeacherDto>> GetTeachersWithDepartment();
         ResponseDto<bool> Login(LoginDto loginDto);
     }

@@ -47,6 +47,18 @@ namespace PrivateSchool.API.Controllers
             var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
+        [HttpDelete("/deleteTeacher/{id}")]
+        public IActionResult Delete(int id)
+        {
+            _teacherManager.Delete(id);
+            var response = _teacherManager.GetById(id);
+            if (response == null)
+            {
+                var jsonResponse = JsonSerializer.Serialize(true);
+                return Ok(jsonResponse);
+            }
+            return Ok(JsonSerializer.Serialize(false));
+        }
         [HttpGet("/getTeachersWithDepartment")]
         public IActionResult GetTeachersWithDepartment()
         {
@@ -59,7 +71,7 @@ namespace PrivateSchool.API.Controllers
         {
             var login = _teacherManager.Login(loginDto);
             var jsonResponse = JsonSerializer.Serialize(login);
-            
+
             return Ok(jsonResponse);
         }
     }

@@ -24,7 +24,8 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
 
         public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Set<TEntity>().Remove(entity);
+            _dbContext.SaveChanges();
         }
 
         public List<TEntity> GetAll()

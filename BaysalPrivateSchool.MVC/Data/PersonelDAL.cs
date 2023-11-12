@@ -88,6 +88,15 @@ namespace BaysalPrivateSchool.MVC.Data
             }
             return null;
         }
+        public static async Task<bool> Delete(int id)
+        {
+             
+            using(var httpClient = new HttpClient())
+            {
+                var response = await httpClient.DeleteAsync($"http://localhost:5156/deleteTeacher/{id}");
+                return response.IsSuccessStatusCode;
+            }
+        }
         public static async Task<UpdateTeacherViewModel> GetById(int id)
         {
             var rootTeacher = new Root<UpdateTeacherViewModel>();

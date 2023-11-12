@@ -40,12 +40,13 @@
                         }
                         <td class="d-flex justify-content-around">
                             <a asp-area="Personel" asp-controller="Personel" asp-action="Update" asp-route-id="@teacher.Id" class="btn btn-primary">Update</a>
-                            <button class="btn btn-primary">Delete</button>
+                            <a asp-area="Personel" asp-controller="Personel" asp-action="Delete" asp-route-id="@teacher.Id"
+                                class="btn btn-primary">Delete</a>
                         </td>
                     </tr>
                 }
             </tbody>
-            <tfoot>
+            @* <tfoot>
                 <tr>
                     <th>Rendering engine</th>
                     <th>Browser</th>
@@ -53,7 +54,7 @@
                     <th>Engine version</th>
                     <th>CSS grade</th>
                 </tr>
-            </tfoot>
+            </tfoot> *@
         </table>
     </div>
     <!-- /.card-body -->
