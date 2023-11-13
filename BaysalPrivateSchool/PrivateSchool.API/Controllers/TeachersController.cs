@@ -52,7 +52,7 @@ namespace PrivateSchool.API.Controllers
         {
             _teacherManager.Delete(id);
             var response = _teacherManager.GetById(id);
-            if (response == null)
+            if (response.Data == null)
             {
                 var jsonResponse = JsonSerializer.Serialize(true);
                 return Ok(jsonResponse);

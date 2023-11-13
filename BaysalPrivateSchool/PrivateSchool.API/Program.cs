@@ -14,6 +14,9 @@ builder.Services.AddDbContext<PrivateSchoolDbContext>(options => options.UseSqli
 builder.Services.AddScoped<ITeacherRepository,EfCoreTeacherRepository>();
 builder.Services.AddScoped<ITeacherService, TeacherManager>();
 
+builder.Services.AddScoped<IStudentRepository, EfCoreStudentRepository>();
+builder.Services.AddScoped<IStudentService, StudentManager>();
+
 builder.Services.AddScoped<ISchoolInfoRepository, EfCoreSchoolInfoRepository>();
 builder.Services.AddScoped<ISchoolInfoService, SchoolInfoManager>();
 

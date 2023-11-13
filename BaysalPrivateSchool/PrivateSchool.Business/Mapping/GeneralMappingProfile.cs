@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using PrivateSchool.Entity.Concrete;
 using PrivateSchool.Shared.Dtos;
+using PrivateSchool.Shared.Dtos.StudentDtos;
 
 namespace PrivateSchool.Business.mapping
 {
@@ -13,14 +14,18 @@ namespace PrivateSchool.Business.mapping
     {
         public GeneralMappingProfile()
         {
-            CreateMap<Teacher,TeacherDto>().ReverseMap();
+            CreateMap<Teacher, TeacherDto>().ReverseMap();
             CreateMap<Teacher, AddTeacherDto>().ReverseMap();
             CreateMap<Teacher, UpdateTeacherDto>().ReverseMap();
 
+            CreateMap<Student, StudentDto>().ReverseMap();
+            CreateMap<Student, AddStudentDto>().ReverseMap();
+            CreateMap<Student, UpdateStudentDto>().ReverseMap();
+
             CreateMap<SchoolInfo, SchoolInfoDto>().ReverseMap();
-            CreateMap<News,NewsDto>();
+            CreateMap<News, NewsDto>();
             CreateMap<StudentClub, StudentClubDto>().ReverseMap();
-            CreateMap<Department,DepartmentDto>().ReverseMap();
+            CreateMap<Department, DepartmentDto>().ReverseMap();
 
             //CreateMap<StudentClub,StudentClubDto>().ReverseMap(); //Updated to Below
             CreateMap<StudentClub, StudentClubDto>()

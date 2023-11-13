@@ -14,6 +14,8 @@ namespace BaysalPrivateSchool.MVC.Models
         public string Name { get; set; }
         [JsonPropertyName("StudentNumber")]
         public string StudentNumber { get; set; }
+        [JsonPropertyName("BirthDate")]
+        public DateTime Birthdate { get; set; }
         [JsonPropertyName("IsActive")]
         public bool IsActive { get; set; }
         [JsonPropertyName("IsDeleted")]
