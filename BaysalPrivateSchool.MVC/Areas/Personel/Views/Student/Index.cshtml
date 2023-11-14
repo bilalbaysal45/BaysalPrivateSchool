@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between">
         <p class="card-title">Student Tables</p>
-        <a asp-area="Student" asp-controller="Student" asp-action="Create" class="btn btn-outline-success ">Add
+        <a asp-area="Personel" asp-controller="Student" asp-action="Create" class="btn btn-outline-success ">Add
             Student</a>
     </div>
     <!-- /.card-header -->
@@ -16,7 +16,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Department</th>
+                    <th>StudentNumber</th>
                     <th>Birthdate</th>
                     <th>Is Active ?</th>
                     <th>/////////</th>
@@ -27,7 +27,7 @@
                 {
                     <tr>
                         <td>@student.Id</td>
-                        <td>@student.FirstName @student.LastName</td>
+                        <td>@student.Name</td>
                         <td>@student.StudentNumber</td>
                         <td>@student.Birthdate</td>
                         @if (student.IsActive)
@@ -39,9 +39,9 @@
                             <td>No</td>
                         }
                         <td class="d-flex justify-content-around">
-                            <a asp-area="Student" asp-controller="Student" asp-action="Update" asp-route-id="@student.Id"
+                            <a asp-area="Personel" asp-controller="Student" asp-action="Update" asp-route-id="@student.Id"
                                 class="btn btn-primary">Update</a>
-                            <a asp-area="Student" asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id"
+                            <a asp-area="Personel" asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id"
                                 class="btn btn-primary">Delete</a>
                         </td>
                     </tr>

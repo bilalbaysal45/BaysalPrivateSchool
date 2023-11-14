@@ -1,0 +1,50 @@
+@model UpdateStudentViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+@if (Model != null)
+{
+    <form asp-area="Personel" asp-controller="Student" asp-action="Update" method="Post" enctype="multipart/form-data">
+        <div class="row bg-primary">
+            <div class="col-12 text-start contact-us">
+                <h4 class="text-start">Update Personel</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" type="text" class="form-control">
+            </div>
+            <div class="col-lg-6 col-12">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <label asp-for="BirthDate"></label>
+                <input asp-for="BirthDate" type="date" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" class="form-control">
+            </div>
+            <div class="col-lg-6 col-12">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-12 d-flex justify-content-center align-item-center mt-3">
+                <input type="submit" class="btn btn-outline-warning" value="Update"></input>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <p>Gelen Giden YOk</p>
+}

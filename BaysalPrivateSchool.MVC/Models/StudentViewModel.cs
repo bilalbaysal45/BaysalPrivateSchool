@@ -10,6 +10,10 @@ namespace BaysalPrivateSchool.MVC.Models
     {
         [JsonPropertyName("Id")]
         public int Id { get; set; }
+        [JsonPropertyName("Firstname")]
+        public string FirstName { get; set; }
+        [JsonPropertyName("Lastname")]
+        public string LastName { get; set; }
         [JsonPropertyName("Name")]
         public string Name { get; set; }
         [JsonPropertyName("StudentNumber")]
