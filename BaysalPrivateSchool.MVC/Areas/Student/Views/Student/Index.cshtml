@@ -1,96 +1,42 @@
-@model List<StudentViewModel>
+@model UpdateStudentViewModel
 @{
     ViewData["Title"] = "Index";
+    int userId = ViewBag.UserId;
 }
 
-<div class="card">
-    <div class="card-header d-flex justify-content-between">
-        <p class="card-title">Student Tables</p>
-        <a asp-area="Student" asp-controller="Student" asp-action="Create" class="btn btn-outline-success ">Add
-            Student</a>
+<div class="my-card-container my-2">
+    <div class="card my-card-personel w-100" style="width: 18rem;">
+        <div class="row w-100">
+            <div class="col-sm-3 col-">
+                <img src="~/img/photo.jpg" class="card-img-top" alt="...">
+            </div>
+            <div class="col-sm-9 col-">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <h1>Student Information</h1>
+                            <div class="my-contact-item">
+                                <p>@Model.FirstName @Model.LastName</p>
+                            </div>
+                            <div class="my-contact-item">
+                                <p>@Model.BirthDate.Date</p>
+
+                            </div>
+                            <div class="my-contact-item">
+                                <p>@Model.Email</p>
+                            </div>
+                            <div class="my-contact-item">
+                                <a asp-area="Student" asp-controller="StudentClub" asp-action="Index" asp-route-id="@Model.Id" class="btn btn-primary m-1">Change StudentClub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Birthdate</th>
-                    <th>Is Active ?</th>
-                    <th>/////////</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var student in Model)
-                {
-                    <tr>
-                        <td>@student.Id</td>
-                        <td>@student.FirstName @student.LastName</td>
-                        <td>@student.StudentNumber</td>
-                        <td>@student.Birthdate</td>
-                        @if (student.IsActive)
-                        {
-                            <td>Yes</td>
-                        }
-                        else
-                        {
-                            <td>No</td>
-                        }
-                        <td class="d-flex justify-content-around">
-                            <a asp-area="Student" asp-controller="Student" asp-action="Update" asp-route-id="@student.Id"
-                                class="btn btn-primary">Update</a>
-                            <a asp-area="Student" asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id"
-                                class="btn btn-primary">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <!-- /.card-body -->
 </div>
 
-@section CssCodes {
-
-    <!-- DataTables -->
-    <link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="~/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="~/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
-}
 @section Scripts {
+    
 
-    <!-- DataTables  & Plugins -->
-    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="~/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="~/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="~/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="~/plugins/jszip/jszip.min.js"></script>
-    <script src="~/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="~/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="~/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="~/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="~/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="~/dist/js/adminlte.min.js"></script>
-    <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
 }

@@ -14,5 +14,9 @@ namespace PrivateSchool.Business.Abstract
         ResponseDto<StudentDto> Create(AddStudentDto newStudentDto);
         ResponseDto<StudentDto> Update(UpdateStudentDto updateStudent);
         void Delete(int studentId);
+        ResponseDto<bool> Login(LoginDto loginDto);
+        ResponseDto<StudentDto> GetStudentWithLoginCredentials(LoginDto loginDto);
+        ResponseDto<bool> ChangeStudentClub(ChangeStudentClubDto changeStudentClub);
+
     }
 }

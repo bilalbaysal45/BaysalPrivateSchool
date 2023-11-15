@@ -40,7 +40,7 @@ namespace BaysalPrivateSchool.MVC.Data
             {
                 var serializeLogin = JsonSerializer.Serialize(loginCredentials);
                 StringContent stringContent = new StringContent(serializeLogin, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("http://localhost:5156/login", stringContent);
+                var response = await httpClient.PostAsync("http://localhost:5156/loginTeacher", stringContent);
                 if (response.IsSuccessStatusCode)
                 {
                     string contentResponse = await response.Content.ReadAsStringAsync();

@@ -8,6 +8,7 @@ namespace PrivateSchool.Data.Abstract
 {
     public interface IStudentRepository : IGenericRepository<Student>
     {
-        
+        Student GetStudentWithLoginCredentials(string email, string password);
+        Student GetStudentWithStudentClub(int id);
     }
 }

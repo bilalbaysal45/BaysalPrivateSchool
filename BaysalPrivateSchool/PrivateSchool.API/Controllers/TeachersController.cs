@@ -66,7 +66,7 @@ namespace PrivateSchool.API.Controllers
             var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
-        [HttpPost("/login")]
+        [HttpPost("/loginTeacher")]
         public IActionResult Login(LoginDto loginDto)
         {
             var login = _teacherManager.Login(loginDto);

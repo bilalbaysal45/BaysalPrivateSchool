@@ -26,5 +26,6 @@ namespace BaysalPrivateSchool.MVC.Models
         public List<TeachersWithDepartmentViewModel> Teachers { get; set; }
         [JsonPropertyName("Students")]
         public List<StudentViewModel> Students { get; set; }
+        public int? CurrentId { get; set; }
     }
 }

@@ -17,6 +17,15 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
         }
         PrivateSchoolDbContext Context{get{ return _dbContext as PrivateSchoolDbContext;}}
 
-        
+        public Student GetStudentWithLoginCredentials(string email, string password)
+        {
+            var student = Context.Students.Where(t=> t.Email == email && t.Password == password).SingleOrDefault();
+            return student;
+        }
+        public Student GetStudentWithStudentClub(int studentId)
+        {
+            var student = Context.Students.Include( s => s.StudentClub).FirstOrDefault(t => t.Id == studentId);
+            return student;
+        }
     }
 }

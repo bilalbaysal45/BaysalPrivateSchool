@@ -93,5 +93,60 @@ namespace BaysalPrivateSchool.MVC.Data
             }
             return false;
         }
+        public static async Task<bool> Login(LoginViewModel loginCredentials)
+        {
+            Root<bool> rootLogin = new Root<bool>();
+
+            using (var httpClient = new HttpClient())
+            {
+                var serializeLogin = JsonSerializer.Serialize(loginCredentials);
+                StringContent stringContent = new StringContent(serializeLogin, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync("http://localhost:5156/loginStudent", stringContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    string contentResponse = await response.Content.ReadAsStringAsync();
+                    rootLogin = JsonSerializer.Deserialize<Root<bool>>(contentResponse);
+                    if (rootLogin.Data)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public static async Task<StudentViewModel> GetStudent(LoginViewModel login)
+        {
+            Root<StudentViewModel> rootStudent = new Root<StudentViewModel>();
+            using(var httpClient = new HttpClient())
+            {
+                var serializeLogin = JsonSerializer.Serialize(login);
+                StringContent stringContent = new StringContent(serializeLogin,Encoding.UTF8,"application/json");
+                var response = await httpClient.PostAsync("http://localhost:5156/getStudentLoginCredentials", stringContent);
+                if(response.IsSuccessStatusCode)
+                {
+                    string contentResponse = await response.Content.ReadAsStringAsync();
+                    rootStudent = JsonSerializer.Deserialize<Root<StudentViewModel>>(contentResponse);
+                    return rootStudent.Data;
+                }
+            }
+            return null;
+        }
+        public static async Task<bool> ChangeStudentClub(ChangeStudentClubViewModel changeStudentClub)
+        {
+            Root<bool> root = new Root<bool>();
+            using(var httpClient = new HttpClient())
+            {
+                var serializeChangeStudentClub = JsonSerializer.Serialize(changeStudentClub);
+                StringContent stringContent = new StringContent(serializeChangeStudentClub,Encoding.UTF8,"application/json");
+                var response = await httpClient.PostAsync("http://localhost:5156/changeStudentClub", stringContent);
+                if(response.IsSuccessStatusCode)
+                {
+                    string contentResponse = await response.Content.ReadAsStringAsync();
+                    root = JsonSerializer.Deserialize<Root<bool>>(contentResponse);
+                    return root.Data;
+                }
+            }
+            return false;
+        }
     }
 }

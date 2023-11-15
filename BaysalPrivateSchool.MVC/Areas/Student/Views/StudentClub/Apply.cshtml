@@ -1,0 +1,53 @@
+@model StudentClubViewModel
+@{
+    ViewData["Title"] = "Apply";
+    string studentNames = string.Empty;
+    string teacherNames = string.Empty;  
+    Model.CurrentId = ViewBag.CurrentUserId;
+}
+
+<div class="my-card-container my-2">
+    <div class="card my-card-personel w-100" style="width: 18rem;">
+        <div class="row w-100">
+            <div class="col-sm-2 col-12">
+                <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">
+            </div>
+            <div class="col-sm-8 col-12 d-flex">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+                    <h5 class="card-title">Teachers: @foreach (var teachers in Model.Teachers)
+                        {
+                            if (Model.Teachers[Model.Teachers.Count - 1].Id == teachers.Id)
+                            {
+                                teacherNames += teachers.Name;
+                            }
+                            else
+                            {
+                                teacherNames += teachers.Name + ", ";
+                            }
+                        }
+                        @teacherNames</h5>
+                    <p class="card-text">@Model.Description</p>
+                    <p class="card-text">Students: @foreach (var students in Model.Students)
+                        {
+                            if (Model.Students[Model.Students.Count - 1].Id != students.Id)
+                            {
+                                studentNames += students.Name;
+                            }
+                            else
+                            {
+                                studentNames += students.Name + ", ";
+                            }
+                        }
+                        @studentNames</p>
+                </div>
+            </div>
+            <div class="col-sm-2 col-12">
+                <form asp-area="Student" asp-controller="Student" asp-action="AppliedClub" asp-route-id="@Model.Id" method="Post">
+                    <input asp-area="Student" asp-controller="Student" asp-action="AppliedClub" asp-route-id="@Model.Id" type="submit" class="btn btn-primary m-2" value="Apply"></input>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

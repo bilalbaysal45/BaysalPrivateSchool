@@ -10,7 +10,7 @@
                     <input type="email" name="email" id="teacher-input" />
                     <label for="teacher-pass">Password:</label>
                     <input type="password" name="password" id="teacher-pass"/>
-                    <input asp-area="Personel" asp-controller="Home" asp-action="Index" class="btn btn-sm btn-primary my-1" type="submit" name="teacherlogin" id="teacherlogin"
+                    <input class="btn btn-sm btn-primary my-1" type="submit" name="teacherlogin" id="teacherlogin"
                         value="Login" />
                     
                 </section>
@@ -18,13 +18,13 @@
         </div>
         <div class="my-card last col-md-5 col-5">
             <h1>Students Login Here</h1>
-            <form method="post">
+            <form asp-controller="Student" asp-action="Login" method="post" enctype="multipart/form-data">
                 <section>
                     <h3>Students Login Form</h3>
                     <label for="student-input">Email:</label>
-                    <input type="email" name="student-input" id="student-input" />
+                    <input type="email" name="email" id="student-input" />
                     <label for="student-pass">Password:</label>
-                    <input type="password" name="student-pass" id="student-pass"  />
+                    <input type="password" name="password" id="student-pass"  />
                     <input class="btn btn-sm btn-primary my-1" type="submit" name="studentlogin" value="Login" />
                 </section>
             </form>
