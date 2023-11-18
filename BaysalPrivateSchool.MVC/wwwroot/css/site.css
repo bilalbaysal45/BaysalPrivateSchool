@@ -8,6 +8,13 @@ html {
   }
 }
 
+:root {
+  --my-bg: #B4846C;
+  --my-login-menu: #7D5A50;
+  --my-top-menu: #FCDEC0;
+  --my-cards: #E5B299;
+}
+
 .btn:focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
@@ -23,6 +30,16 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: var(--my-bg);
+  background: linear-gradient(90deg, var(--my-login-menu) 0%, var(--my-bg) 35%, var(--my-top-menu) 100%);
+}
+
+.my-bg {
+  background-color: var(--my-top-menu) !important;
+}
+
+.my-footer {
+  background-color: var(--my-top-menu) !important;
 }
 
 .my-d-flex {
@@ -35,6 +52,21 @@ body {
   text-decoration: none;
   list-style: none;
 
+}
+
+.my-nav-link {
+  background-color: var(--my-cards);
+  width: 15%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 5px brown;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+.my-nav-link :hover{
+  text-shadow: 0 2px 2px darkred;
+  transition: 1s;
+  background-color: var(--my-login-menu);
+  border-radius: 5px;
 }
 
 .my-card {
@@ -65,6 +97,7 @@ body {
 }
 
 #slidepanel {
+  background-color: var(--my-login-menu);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,6 +164,7 @@ body {
 
 .my-card-container {
   /*bootstrap card dışı gerekirse*/
+  background-color: var(--my-cards);
 }
 
 .about-grid {
@@ -144,7 +178,7 @@ body {
 /* .about-header {
   grid-area: 1 / 1 / 2 / 3;
 } */
-.linear-line{
+.linear-line {
   margin: auto auto;
   display: inline-block;
   width: 50px;
@@ -152,27 +186,31 @@ body {
   height: 2px;
   padding-bottom: 3px;
 }
-.contact-us{
+
+.contact-us {
   /* gerekirse */
 }
-.contact-us h4{
+
+.contact-us h4 {
   padding-top: 5px;
   display: inline-block;
   height: 100%;
 }
-.my-contact-item{
+
+.my-contact-item {
   display: flex;
   justify-content: start;
   align-items: center;
   margin-bottom: 10px;
   border-bottom: 1px solid black;
 }
-.my-contact-item p{
+
+.my-contact-item p {
   padding-top: 12px;
   padding-left: 7px;
 }
 
-.my-card-personel{
+.my-card-personel {
   display: flex;
   flex-direction: row;
 }

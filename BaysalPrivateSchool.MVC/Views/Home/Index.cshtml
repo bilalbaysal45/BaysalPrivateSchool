@@ -10,10 +10,10 @@
         <div class="child bg-dark text-light"><a class="nav-link" href="">Video Galeri</a></div>
         <div class="child bg-dark text-light"><a class="nav-link" href="">Tanıtım Filmleri</a></div>
     </div>
-    <div class="news-header bg-primary mt-5 d-flex justify-content-center align-items-center">
+    <div class="my-bg news-header bg-primary mt-5 d-flex justify-content-center align-items-center">
         <h1 class="">Haberler</h1>
     </div>
-
+    
     @* alttaki card'a veritabınında gelmesini planlıyorum haberlerin *@
     @* Zaman Kalırsa Id'ye Göre Haberler Sayfasına yönlendirme Yapılacak *@
     <div class="row">
@@ -22,8 +22,8 @@
         foreach(var news in studentClubs.News)
         {
             <div class="col-md-3 col-sm-6 col-12">
-                <div class="my-card-container my-2">
-                    <div class="card" style="width: 18rem;">
+                
+                        <div class="card my-card-container" style="width: 18rem;">
                         <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">HaberPhoto
                         <div class="card-body">
                             <h4 class="card-title">@studentClubs.Name News</h4>
@@ -31,7 +31,7 @@
                             <a asp-controller="News" asp-action="Index" asp-route-id="@news.Id" class="btn btn-primary">Read More</a>
                         </div>
                     </div>
-                </div>
+                
             </div>
             }
     }

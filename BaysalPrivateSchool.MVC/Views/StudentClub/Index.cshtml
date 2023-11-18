@@ -11,8 +11,7 @@
 
 @foreach (var studentClub in Model)
 {
-    <div class="my-card-container my-2">
-        <div class="card my-card-personel w-100" style="width: 18rem;">
+        <div class="card my-card-container my-card-personel w-100 my-2" style="width: 18rem;">
             <div class="row w-100">
                 <div class="col-sm-2 col-">
                     <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">
@@ -46,12 +45,11 @@
                             }
                             @studentNames</p>
                     </div>
-                    <button type="button" class="btn btn-primary m-2">Apply</button>
+                    @* <button type="button" class="btn btn-primary m-2">Apply</button> *@
                 </div>
 
             </div>
         </div>
-    </div>
     {studentNames = "";
     teacherNames = "";}
 }

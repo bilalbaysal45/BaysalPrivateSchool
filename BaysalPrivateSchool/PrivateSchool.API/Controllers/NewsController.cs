@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PrivateSchool.API.JsonOptions;
 using PrivateSchool.Business.Abstract;
 
 namespace PrivateSchool.API.Controllers
@@ -23,7 +24,7 @@ namespace PrivateSchool.API.Controllers
         public IActionResult GetById(int id)
         {
             var response = _newsManager.GetById(id);
-            var jsonResponse = JsonSerializer.Serialize(response);
+            var jsonResponse = JsonSerializer.Serialize(response,JsonOptionEndLoop.Option());
             return Ok(jsonResponse);
         }
     }
