@@ -27,5 +27,11 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
             var student = Context.Students.Include( s => s.StudentClub).FirstOrDefault(t => t.Id == studentId);
             return student;
         }
+        public Student GetStudentWithNotes(int id)
+        {
+            var student = Context.Students.Where(s=>s.Id == id).Include(s => s.Notes).SingleOrDefault();
+            student.Notes.ForEach(n =>n.Student = null);
+            return student;
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using BaysalPrivateSchool.MVC.Areas.Personel.Models;
+using BaysalPrivateSchool.MVC.Areas.Student.Models;
 using BaysalPrivateSchool.MVC.Models;
 using Microsoft.Extensions.Localization;
 
@@ -147,6 +148,21 @@ namespace BaysalPrivateSchool.MVC.Data
                 }
             }
             return false;
+        }
+        public static async Task<StudentWithNotesViewModel> GetStudentWithNotes(int id)
+        {
+            using(var httpClient = new HttpClient())
+            {
+                var student = new Root<StudentWithNotesViewModel>();
+                var response = await httpClient.GetAsync($"http://localhost:5156/getStudentWithNotes/{id}");
+                if(response.IsSuccessStatusCode)
+                {
+                    var contentResponse = await response.Content.ReadAsStringAsync();
+                    student = JsonSerializer.Deserialize<Root<StudentWithNotesViewModel>>(contentResponse);
+                    return student.Data;
+                }
+                return null;
+            }
         }
     }
 }

@@ -104,7 +104,6 @@ namespace PrivateSchool.Business.Concrete
                 {
                     login.Data = false;
                     login.Error = "Wrong Credentials";
-                    return login;
                 }
             }
             return login;
@@ -113,22 +112,32 @@ namespace PrivateSchool.Business.Concrete
         {
             var student = _studentRepository.GetStudentWithLoginCredentials(loginDto.Email, loginDto.Password);
             var studentDto = _mapper.Map<StudentDto>(student);
-            if(studentDto !=null)
+            if (studentDto != null)
             {
-                return new ResponseDto<StudentDto>{Data = studentDto,Error=null};
+                return new ResponseDto<StudentDto> { Data = studentDto, Error = null };
             }
-            return new ResponseDto<StudentDto>{Data=null,Error="Not Found"};
+            return new ResponseDto<StudentDto> { Data = null, Error = "Not Found" };
         }
         public ResponseDto<bool> ChangeStudentClub(ChangeStudentClubDto changeStudentClub)
         {
             var student = _studentRepository.GetById(changeStudentClub.Id);
             student.StudentClubId = changeStudentClub.StudentClubId;
             var response = _studentRepository.Update(student);
-            if(response.StudentClubId == changeStudentClub.StudentClubId)
+            if (response.StudentClubId == changeStudentClub.StudentClubId)
             {
-                return new ResponseDto<bool>{Data = true, Error=null};
+                return new ResponseDto<bool> { Data = true, Error = null };
             }
             return new ResponseDto<bool> { Data = false, Error = "Error" };
+        }
+        public ResponseDto<StudentDto> GetStudentWithNotes(int id)
+        {
+            var student = _studentRepository.GetStudentWithNotes(id);
+            if (student != null)
+            {
+                var studentDto = _mapper.Map<StudentDto>(student);
+                return new ResponseDto<StudentDto>{Data = studentDto,Error=null};
+            }
+            return new ResponseDto<StudentDto>{Data=null,Error="Not Found"};
         }
     }
 }

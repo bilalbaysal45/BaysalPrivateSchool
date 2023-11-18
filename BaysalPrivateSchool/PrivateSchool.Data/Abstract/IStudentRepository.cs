@@ -10,5 +10,6 @@ namespace PrivateSchool.Data.Abstract
     {
         Student GetStudentWithLoginCredentials(string email, string password);
         Student GetStudentWithStudentClub(int id);
+        Student GetStudentWithNotes(int id);
     }
 }

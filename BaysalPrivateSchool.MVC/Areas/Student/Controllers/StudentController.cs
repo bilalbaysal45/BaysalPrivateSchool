@@ -28,5 +28,11 @@ namespace BaysalPrivateSchool.MVC.Areas.Student.Controllers
 
             return RedirectToAction("Index", "Student", new { area = "Student", id = _userId });
         }
+        [HttpGet]
+        public async Task<IActionResult> Note(int id)
+        {
+            var response = await StudentDAL.GetStudentWithNotes(id);
+            return View(response);
+        }
     }
 }

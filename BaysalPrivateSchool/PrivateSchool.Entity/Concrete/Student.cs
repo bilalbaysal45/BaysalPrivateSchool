@@ -19,5 +19,6 @@ namespace PrivateSchool.Entity.Concrete
         public int RightOfAbsence { get; set; } = 30;
         public int? StudentClubId { get; set; }
         public StudentClub StudentClub { get; set; }
+        public List<Note> Notes { get; set; }
     }
 }

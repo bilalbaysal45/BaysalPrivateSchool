@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PrivateSchool.Shared.Dtos.NoteDtos;
 
 namespace PrivateSchool.Shared.Dtos.StudentDtos
 {
@@ -17,5 +18,6 @@ namespace PrivateSchool.Shared.Dtos.StudentDtos
         public string Password { get; set; }
         public DateTime BirthDate { get; set; }
         public bool IsActive { get; set; }
+        public List<NoteDto> Notes { get; set; }
     }
 }

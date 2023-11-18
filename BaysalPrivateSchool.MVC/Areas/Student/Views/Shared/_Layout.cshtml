@@ -15,7 +15,7 @@
     <div class="Login-section">
     </div>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="my-bg navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="Student" asp-controller="Student" asp-action="Index" asp-route-id="@UserInfo.UserId">BaysalPrivateSchool</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
@@ -24,8 +24,12 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        <li class="nav-item my-nav-link">
                             <a class="nav-link text-dark" asp-area="Student" asp-controller="Student" asp-action="Index" asp-route-id="@UserInfo.UserId">StudentHome</a>
+                        </li>
+                        <li class="nav-item my-nav-link">
+                            <a class="nav-link text-dark" asp-area="Student" asp-controller="Student" asp-action="Note"
+                                asp-route-id="@UserInfo.UserId">MyNotes</a>
                         </li>
                     </ul>
                 </div>
@@ -38,7 +42,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="my-footer border-top footer text-muted">
         <div class="container">
             &copy; 2023 - BaysalPrivateSchool.MVC - Bilal Baysal Tarafından Hazırlanmıştır.
         </div>

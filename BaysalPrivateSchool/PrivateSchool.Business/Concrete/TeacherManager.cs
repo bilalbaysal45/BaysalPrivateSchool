@@ -120,7 +120,6 @@ namespace PrivateSchool.Business.Concrete
                 else{
                     login.Data = false;
                     login.Error = "Wrong Credentials";
-                    return login;
                 }
             }
             return login;
