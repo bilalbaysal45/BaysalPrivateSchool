@@ -31,6 +31,9 @@ builder.Services.AddScoped<INewsService,NewsManager>();
 builder.Services.AddScoped<IDepartmentRepository, EfCoreDepartmentRepository>();
 builder.Services.AddScoped<IDepartmentService, DepartmentManager>();
 
+builder.Services.AddScoped<INoteRepository,EfCoreNoteRepository>();
+builder.Services.AddScoped<INoteService,NoteManager>();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
