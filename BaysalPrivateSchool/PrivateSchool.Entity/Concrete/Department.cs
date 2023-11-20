@@ -8,7 +8,7 @@ namespace PrivateSchool.Entity.Concrete
 {
     public class Department : BaseEntity
     {
-        // public int TeacherId { get; set; }
+        // // public int TeacherId { get; set; }
         // public List<Teacher> Teachers { get; set; }
     }
 }

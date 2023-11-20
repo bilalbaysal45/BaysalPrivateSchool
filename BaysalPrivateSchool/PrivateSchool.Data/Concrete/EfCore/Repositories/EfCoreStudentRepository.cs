@@ -33,5 +33,6 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
             student.Notes.ForEach(n =>n.Student = null);
             return student;
         }
+        
     }
 }

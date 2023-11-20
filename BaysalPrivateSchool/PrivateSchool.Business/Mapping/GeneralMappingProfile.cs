@@ -18,6 +18,7 @@ namespace PrivateSchool.Business.mapping
             CreateMap<Teacher, TeacherDto>().ReverseMap();
             CreateMap<Teacher, AddTeacherDto>().ReverseMap();
             CreateMap<Teacher, UpdateTeacherDto>().ReverseMap();
+            
 
             CreateMap<Student, StudentDto>().ReverseMap();
             CreateMap<Student, AddStudentDto>().ReverseMap();

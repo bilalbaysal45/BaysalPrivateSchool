@@ -35,6 +35,18 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
             
             return teacher.DepartmentId;
         }
-        
+        public Teacher GetTeacherWithClassesAndStudents(int id)
+        {
+            var teacher = Context.Teachers.Include(tc => tc.TeacherClasses).ThenInclude(sc => sc.SClass).ThenInclude(s => s.Students).SingleOrDefault(t => t.Id == id);
+            teacher.TeacherClasses.ForEach(t => t.Teacher = null);
+            return teacher;
+        }
+        public Teacher GetTeacherWithLoginCredentials(string email, string password)
+        {
+            var teacher = Context.Teachers.Where(t => t.Email == email && t.Password == password).SingleOrDefault();
+            return teacher;
+        }
+
+
     }
 }

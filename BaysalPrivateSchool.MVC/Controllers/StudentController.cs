@@ -31,7 +31,7 @@ namespace BaysalPrivateSchool.MVC.Controllers
                 {
                     var student = await StudentDAL.GetStudent(loginCredentials);
                     UserInfo.UserId = student.Id;
-                    return RedirectToAction("Index", "Student", new { area = "Student",student.Id}); // Personel area'ya yönlendirme
+                    return RedirectToAction("Index", "Student", new { area = "Student",student.Id}); // Student area'ya yönlendirme
                 }
             }
             return View(login);

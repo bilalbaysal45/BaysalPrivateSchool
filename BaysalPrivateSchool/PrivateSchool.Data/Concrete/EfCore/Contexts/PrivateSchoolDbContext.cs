@@ -24,8 +24,11 @@ namespace PrivateSchool.Data.Concrete.EfCore.Contexts
         public DbSet<StudentClub> StudentClubs { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<StudentClubsNews> StudentClubsNews { get; set; }
+        public DbSet<SClass> SClasses { get; set; }
+        public DbSet<TeacherClass> TeacherClasses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(TeacherClass).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StudentClubsNewsConfig).Assembly);
             base.OnModelCreating(modelBuilder);
         }

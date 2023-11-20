@@ -12,7 +12,7 @@ namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
     [Area("Personel")]
     public class HomeController : Controller
     {
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
             var response = await PersonelDAL.GetTeachersWithDepartment();
             return View(response);

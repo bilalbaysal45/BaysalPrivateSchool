@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PrivateSchool.Entity.Concrete;
 using PrivateSchool.Shared.Dtos;
+using PrivateSchool.Shared.Dtos.NoteDtos;
 
 namespace PrivateSchool.Business.Abstract
 {
@@ -16,5 +17,8 @@ namespace PrivateSchool.Business.Abstract
         void Delete(int teacherId);
         ResponseDto<List<TeacherDto>> GetTeachersWithDepartment();
         ResponseDto<bool> Login(LoginDto loginDto);
+        ResponseDto<TeacherWithClassesAndStudentsDto> GetTeacherWithClassesAndStudents(int id);
+        ResponseDto<TeacherDto> GetTeacherWithLoginCredentials(LoginDto loginDto);
+
     }
 }

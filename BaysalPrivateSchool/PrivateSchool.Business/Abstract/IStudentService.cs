@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PrivateSchool.Shared.Dtos;
+using PrivateSchool.Shared.Dtos.NoteDtos;
 using PrivateSchool.Shared.Dtos.StudentDtos;
 
 namespace PrivateSchool.Business.Abstract

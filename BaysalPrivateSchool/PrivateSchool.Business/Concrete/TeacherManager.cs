@@ -8,6 +8,7 @@ using PrivateSchool.Business.Abstract;
 using PrivateSchool.Data.Abstract;
 using PrivateSchool.Entity.Concrete;
 using PrivateSchool.Shared.Dtos;
+using PrivateSchool.Shared.Dtos.NoteDtos;
 
 namespace PrivateSchool.Business.Concrete
 {
@@ -123,6 +124,27 @@ namespace PrivateSchool.Business.Concrete
                 }
             }
             return login;
+        }
+        public ResponseDto<TeacherWithClassesAndStudentsDto> GetTeacherWithClassesAndStudents(int id)
+        {
+            var response = _teacherRepository.GetTeacherWithClassesAndStudents(id);
+            ResponseDto<TeacherWithClassesAndStudentsDto> x = new ResponseDto<TeacherWithClassesAndStudentsDto>();
+            x.Data = new TeacherWithClassesAndStudentsDto();
+            x.Data.Id = response.Id;
+            x.Data.FirstName = response.FirstName;
+            x.Data.LastName = response.LastName;
+            x.Data.TeacherClasses = response.TeacherClasses;
+            return x;
+        }
+        public ResponseDto<TeacherDto> GetTeacherWithLoginCredentials(LoginDto loginDto)
+        {
+            var teacher = _teacherRepository.GetTeacherWithLoginCredentials(loginDto.Email, loginDto.Password);
+            var teacherDto = _mapper.Map<TeacherDto>(teacher);
+            if (teacherDto != null)
+            {
+                return new ResponseDto<TeacherDto> { Data = teacherDto, Error = null };
+            }
+            return new ResponseDto<TeacherDto> { Data = null, Error = "Not Found" };
         }
     }
 }

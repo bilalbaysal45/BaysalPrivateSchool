@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PrivateSchool.API.JsonOptions;
 using PrivateSchool.Business.Abstract;
 using PrivateSchool.Shared.Dtos;
 
@@ -72,6 +73,20 @@ namespace PrivateSchool.API.Controllers
             var login = _teacherManager.Login(loginDto);
             var jsonResponse = JsonSerializer.Serialize(login);
 
+            return Ok(jsonResponse);
+        }
+        [HttpPost("/getTeacherLoginCredentials")]
+        public IActionResult GetStudentWithLoginCredentials(LoginDto loginDto)
+        {
+            var response = _teacherManager.GetTeacherWithLoginCredentials(loginDto);
+            var jsonResponse = JsonSerializer.Serialize(response);
+            return Ok(jsonResponse);
+        }
+        [HttpGet("/getTeacherWithClassesAndStudents/{id}")]
+        public IActionResult GetStudentsWithClassAndTeacherByTeacherId(int id)
+        {
+            var response = _teacherManager.GetTeacherWithClassesAndStudents(id);
+            var jsonResponse = JsonSerializer.Serialize(response, JsonOptionEndLoop.Option());
             return Ok(jsonResponse);
         }
     }

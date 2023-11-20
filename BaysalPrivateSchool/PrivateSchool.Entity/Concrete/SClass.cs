@@ -6,12 +6,9 @@ using PrivateSchool.Entity.Abstract;
 
 namespace PrivateSchool.Entity.Concrete
 {
-    public class Teacher : BaseEntityPerson
+    public class SClass : BaseEntity
     {
-        public decimal MonthlyFee { get; set; }
-        public string CV { get; set; }
-        public int? DepartmentId { get; set; }
-        public Department Department { get; set; }
+        public List<Student> Students { get; set; }
         public List<TeacherClass> TeacherClasses { get; set; }
     }
 }

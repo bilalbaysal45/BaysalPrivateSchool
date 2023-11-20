@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BaysalPrivateSchool.MVC.Areas.Student.Models.User;
 using BaysalPrivateSchool.MVC.Data;
 using BaysalPrivateSchool.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,11 @@ namespace BaysalPrivateSchool.MVC.Controllers
             {
                 login = await PersonelDAL.Login(loginCredentials);
                 if(login)
-                return RedirectToAction("Index","Home",new {area="Personel"}); // Personel area'ya yönlendirme
+                {
+                    var teacher = await PersonelDAL.GetTeacher(loginCredentials);
+                    UserInfo.UserId = teacher.Id;
+                    return RedirectToAction("Index","Home",new {area="Personel",id= teacher.Id}); // Personel area'ya yönlendirme
+                }
             }
             return View(login);
         }

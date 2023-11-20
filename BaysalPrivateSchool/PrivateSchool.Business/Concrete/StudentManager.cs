@@ -8,6 +8,7 @@ using PrivateSchool.Business.Abstract;
 using PrivateSchool.Data.Abstract;
 using PrivateSchool.Entity.Concrete;
 using PrivateSchool.Shared.Dtos;
+using PrivateSchool.Shared.Dtos.NoteDtos;
 using PrivateSchool.Shared.Dtos.StudentDtos;
 
 namespace PrivateSchool.Business.Concrete
@@ -139,5 +140,6 @@ namespace PrivateSchool.Business.Concrete
             }
             return new ResponseDto<StudentDto>{Data=null,Error="Not Found"};
         }
+        
     }
 }
