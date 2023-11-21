@@ -6,7 +6,8 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between">
         <p class="card-title">Notes Table</p>
-        <a asp-area="Personel" asp-controller="Personel" asp-action="Index" class="btn btn-outline-success ">Add Note</a>
+        @* <a asp-area="Personel" asp-controller="Personel" asp-action="Index" class="btn btn-outline-success ">Add
+        Note</a> *@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -16,24 +17,61 @@
                     <th>Id</th>
                     <th>StudentName</th>
                     <th>StudentClass</th>
+                    <th>MidtermNote</th>
+                    <th>FinalNote</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var sclass in Model.TeacherClasses)
                 {
-                    @foreach(var student in sclass.SClass.Students)
+                    @foreach (var student in sclass.SClass.Students)
                     {
-                    <tr>
-                        <td>@student.Id</td>
-                        <td>@student.Name</td>
-                        <td>@sclass.SClass.Name</td>
-                        @* <td class="d-flex justify-content-around">
-                            <a asp-area="Personel" asp-controller="Personel" asp-action="Update" asp-route-id="@Model.Id"
-                                class="btn btn-primary">Update</a>
-                            <a asp-area="Personel" asp-controller="Personel" asp-action="Delete" asp-route-id="@Model.Id"
-                                class="btn btn-primary">Delete</a>
-                        </td> *@
-                    </tr>
+                        <tr>
+                            <td>@student.Id</td>
+                            <td>@student.Name</td>
+                            <td>@sclass.SClass.Name</td>
+                            @if (student.Notes.Count == 1)
+                            {
+                                if(student.Notes[0].Name == "Vize")
+                                {
+                                    <td>@student.Notes[0].Name : @student.Notes[0].Point</td>
+                                    <td>Not : Girilmedi</td>
+                                }
+                                else{
+                                    <td>Not : Girilmedi</td>
+                                    <td>@student.Notes[0].Name : @student.Notes[0].Point</td>
+                                }
+                            }
+                            else if (student.Notes.Count == 2)
+                            {
+
+                                <td>@student.Notes[0].Name : @student.Notes[0].Point</td>
+                                <td>@student.Notes[1].Name : @student.Notes[1].Point</td>
+                            }
+                            else
+                            {
+                                <td>Not : Girilmedi</td>
+                                <td>Not : Girilmedi</td>
+                            }
+                            @* @foreach (var note in student.Notes)
+                    {
+                    if(note.Name == "Vize")
+                    {
+                    <td>@note.Name : @note.Point</td>
+                    }
+                    else
+                    {
+                    <td>Vize : Girilmedi</td>
+                    <td>Final : Girilmedi</td>
+                    }
+                    } *@
+                            <td class="d-flex justify-content-around">
+                                <a asp-area="Personel" asp-controller="Personel" asp-action="Update" asp-route-id="@Model.Id"
+                                    class="btn btn-primary">Update</a>
+                                <a asp-area="Personel" asp-controller="Personel" asp-action="Delete" asp-route-id="@Model.Id"
+                                    class="btn btn-primary">Add Note</a>
+                            </td>
+                        </tr>
                     }
                 }
             </tbody>
@@ -57,7 +95,7 @@
     <link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+                @* <link rel="stylesheet" href="~/dist/css/adminlte.min.css"> *@
 }
 @section Scripts {
 
@@ -74,7 +112,7 @@
     <script src="~/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="~/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="~/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="~/dist/js/adminlte.min.js"></script>
+    @* <script src="~/dist/js/adminlte.min.js"></script> *@
     <script>
         $(function () {
             $("#example1").DataTable({

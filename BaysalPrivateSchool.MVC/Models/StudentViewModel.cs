@@ -24,5 +24,8 @@ namespace BaysalPrivateSchool.MVC.Models
         public bool IsActive { get; set; }
         [JsonPropertyName("IsDeleted")]
         public bool IsDeleted { get; set; }
+        [JsonPropertyName("Notes")]
+        public List<NoteViewModel> Notes { get; set; }
+
     }
 }
