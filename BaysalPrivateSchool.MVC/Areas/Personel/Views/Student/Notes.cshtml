@@ -32,12 +32,13 @@
                             <td>@sclass.SClass.Name</td>
                             @if (student.Notes.Count == 1)
                             {
-                                if(student.Notes[0].Name == "Vize")
+                                if (student.Notes[0].Name == "Midterm")
                                 {
                                     <td>@student.Notes[0].Name : @student.Notes[0].Point</td>
                                     <td>Not : Girilmedi</td>
                                 }
-                                else{
+                                else
+                                {
                                     <td>Not : Girilmedi</td>
                                     <td>@student.Notes[0].Name : @student.Notes[0].Point</td>
                                 }
@@ -45,31 +46,47 @@
                             else if (student.Notes.Count == 2)
                             {
 
-                                <td>@student.Notes[0].Name : @student.Notes[0].Point</td>
-                                <td>@student.Notes[1].Name : @student.Notes[1].Point</td>
+                                <td>@student.Notes.Where(x => x.Name == "Midterm").SingleOrDefault().Name : @student.Notes.Where(x => x.Name == "Midterm").SingleOrDefault().Point</td>
+                                <td>@student.Notes.Where(x => x.Name == "Final").SingleOrDefault().Name : @student.Notes.Where(x => x.Name == "Final").SingleOrDefault().Point</td>
                             }
                             else
                             {
                                 <td>Not : Girilmedi</td>
                                 <td>Not : Girilmedi</td>
                             }
-                            @* @foreach (var note in student.Notes)
-                    {
-                    if(note.Name == "Vize")
-                    {
-                    <td>@note.Name : @note.Point</td>
-                    }
-                    else
-                    {
-                    <td>Vize : Girilmedi</td>
-                    <td>Final : Girilmedi</td>
-                    }
-                    } *@
+                            
                             <td class="d-flex justify-content-around">
-                                <a asp-area="Personel" asp-controller="Personel" asp-action="Update" asp-route-id="@Model.Id"
-                                    class="btn btn-primary">Update</a>
-                                <a asp-area="Personel" asp-controller="Personel" asp-action="Delete" asp-route-id="@Model.Id"
-                                    class="btn btn-primary">Add Note</a>
+                                @if (student.Notes.Count < 2)
+                                {
+                                    <a asp-area="Personel" asp-controller="Student" asp-action="NoteAdd" asp-route-id="@student.Id"
+                                        class="btn btn-primary">Add Note</a>
+                                }
+                                @if (student.Notes.Count == 1)
+                                {
+                                    if (student.Notes.SingleOrDefault().Name == "Midterm")
+                                    {
+                                        <a asp-area="Personel" asp-controller="Student" asp-action="NoteUpdate"
+                                            asp-route-id="@student.Notes[0].Id" class="btn btn-primary">MidtermUpdate</a>
+                                    }
+                                    else if (student.Notes.SingleOrDefault().Name == "Final")
+                                    {
+                                        <a asp-area="Personel" asp-controller="Student" asp-action="NoteUpdate"
+                                            asp-route-id="@student.Notes[0].Id" class="btn btn-primary">FinalUpdate</a>
+                                    }
+                                    else
+                                    {
+
+                                    }
+
+                                }
+                                else if (student.Notes.Count == 2)
+                                {
+                                    <a asp-area="Personel" asp-controller="Student" asp-action="NoteUpdate"
+                                        asp-route-id="@student.Notes.Where(x=>x.Name == "Midterm").SingleOrDefault().Id" class="btn btn-primary">MidtermUpdate</a>
+                                    <a asp-area="Personel" asp-controller="Student" asp-action="NoteUpdate"
+                                        asp-route-id="@student.Notes.Where(x=>x.Name == "Final").SingleOrDefault().Id"
+                                        class="btn btn-primary">FinalUpdate</a>
+                                }
                             </td>
                         </tr>
                     }
@@ -119,15 +136,6 @@
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
         });
     </script>
 }

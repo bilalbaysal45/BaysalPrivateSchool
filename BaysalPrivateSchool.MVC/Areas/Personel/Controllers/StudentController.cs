@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Threading.Tasks;
 using BaysalPrivateSchool.MVC.Areas.Personel.Models;
 using BaysalPrivateSchool.MVC.Areas.Student.Models.User;
 using BaysalPrivateSchool.MVC.Data;
+using BaysalPrivateSchool.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -66,6 +68,35 @@ namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
         {
             var teacher = await PersonelDAL.GetTeacherWithClass(UserInfo.UserId);
             return View(teacher);
+        }
+        [HttpGet]
+        public async Task<IActionResult> NoteUpdate(int id)
+        {
+            var response = await NoteDAL.GeyById(id);
+            UserInfo.StudentIdForNote = response.StudentId;
+            return View(response);
+        }
+        [HttpPost]
+        public async Task<IActionResult> NoteUpdate(UpdateNoteViewModel updateNote)
+        {
+            updateNote.StudentId = UserInfo.StudentIdForNote;
+            updateNote.TeacherId = UserInfo.UserId;
+            await NoteDAL.Update(updateNote);
+            return RedirectToAction("Notes");
+        }
+        [HttpGet]
+        public async Task<IActionResult> NoteAdd(int id)
+        {
+            UserInfo.StudentIdForNote = id;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> NoteAdd(AddNoteViewModel addNote)
+        {
+            addNote.StudentId = UserInfo.StudentIdForNote;
+            addNote.TeacherId = UserInfo.UserId;
+            await NoteDAL.Create(addNote);
+            return RedirectToAction("Notes");
         }
     }
 }

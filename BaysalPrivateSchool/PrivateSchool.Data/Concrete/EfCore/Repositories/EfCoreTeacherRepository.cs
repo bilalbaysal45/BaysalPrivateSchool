@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PrivateSchool.Data.Abstract;
@@ -37,7 +39,8 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
         }
         public Teacher GetTeacherWithClassesAndStudents(int id)
         {
-            var teacher = Context.Teachers.Include(t => t.TeacherClasses).ThenInclude(tc => tc.SClass).ThenInclude(sc => sc.Students).ThenInclude(s=>s.Notes).SingleOrDefault(t => t.Id == id);
+            var teacher = Context.Teachers.Include(t => t.TeacherClasses).ThenInclude(tc => tc.SClass).ThenInclude(sc => sc.Students).ThenInclude(s=>s.Notes.Where(x=>x.TeacherId == id)).SingleOrDefault(t => t.Id == id);
+            
             teacher.TeacherClasses.ForEach(t => t.Teacher = null);
             teacher.TeacherClasses.ForEach(tc => tc.SClass.Students.ForEach(s => s.Notes.ForEach(n=>n.Teacher = null)));
             return teacher;
