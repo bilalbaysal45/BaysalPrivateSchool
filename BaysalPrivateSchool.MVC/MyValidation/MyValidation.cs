@@ -11,14 +11,12 @@ namespace BaysalPrivateSchool.MVC.MyValidation
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             string name = string.Empty;
-            if(value is string)
-            {
                 name = (string)value;
                 if(name != "Midterm" || name != "Final")
                 {
                     return new ValidationResult("Write Midterm or Final");
                 }
-            }
+            
             return ValidationResult.Success;
         }
     }

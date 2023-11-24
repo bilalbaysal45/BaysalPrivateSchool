@@ -1,4 +1,4 @@
-﻿@model List<StudentClubsNewsViewModel>
+﻿@model Root<List<StudentClubsNewsViewModel>>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -13,28 +13,39 @@
     <div class="my-bg news-header bg-primary mt-5 d-flex justify-content-center align-items-center">
         <h1 class="">Haberler</h1>
     </div>
-    
+
     @* alttaki card'a veritabınında gelmesini planlıyorum haberlerin *@
     @* Zaman Kalırsa Id'ye Göre Haberler Sayfasına yönlendirme Yapılacak *@
-    <div class="row">
-    @foreach(var studentClubs in Model)
+    @if (Model.Data.Count != 0)
     {
-        foreach(var news in studentClubs.News)
-        {
-            <div class="col-md-3 col-sm-6 col-12">
-                
+        <div class="row">
+            @foreach (var studentClubs in Model.Data)
+            {
+                foreach (var news in studentClubs.News)
+                {
+                    <div class="col-md-3 col-sm-6 col-12">
+
                         <div class="card my-card-container" style="width: 18rem;">
-                        <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">HaberPhoto
-                        <div class="card-body">
-                            <h4 class="card-title">@studentClubs.Name News</h4>
-                            <h6 class="card-text">@news.Title</h6>
-                            <a asp-controller="News" asp-action="Index" asp-route-id="@news.Id" class="btn btn-primary">Read More</a>
+                            <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">HaberPhoto
+                            <div class="card-body">
+                                <h4 class="card-title">@studentClubs.Name News</h4>
+                                <h6 class="card-text">@news.Title</h6>
+                                <a asp-controller="News" asp-action="Index" asp-route-id="@news.Id" class="btn btn-primary">Read
+                                    More</a>
+                            </div>
                         </div>
+
                     </div>
-                
-            </div>
+                }
             }
+        </div>
     }
-</div>
-    
+    else
+    {
+        <div class="d-flex justify-content-center align-items-center my-5">
+            @await Html.PartialAsync("_APIErrorPartial")
+        </div>
+    }
+
+
 </div>

@@ -15,10 +15,14 @@
         <div class="row">
             <div class="col-lg-6 col-6">
                 
-                <label asp-for="Name"></label>
+                @* <label asp-for="Name"></label>
                 <input asp-for="Name" type="text" class="form-control">
-                <span class="text-danger" asp-validation-for="Name"></span>
-
+                <span class="text-danger" asp-validation-for="Name"></span> *@
+                <label asp-for="Name"></label>
+                <select asp-for="Name" class="form-select mx-2" id="inputGroupSelect01">
+                    <option class="deneme">Midterm</option>
+                    <option class="deneme">Final</option>
+                </select>
             </div>
             <div class="col-lg-6 col-6">
                 <label asp-for="Point"></label>

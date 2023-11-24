@@ -21,18 +21,18 @@ namespace BaysalPrivateSchool.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email,string password)
         {
-            bool login = false;
+            Root<bool> login = new Root<bool>();
             var loginCredentials = new LoginViewModel();
             loginCredentials.Email = email;
             loginCredentials.Password = password;
             if (ModelState.IsValid)
             {
                 login = await PersonelDAL.Login(loginCredentials);
-                if(login)
+                if(login.Data)
                 {
                     var teacher = await PersonelDAL.GetTeacher(loginCredentials);
-                    UserInfo.UserId = teacher.Id;
-                    return RedirectToAction("Index","Home",new {area="Personel",id= teacher.Id}); // Personel area'ya yönlendirme
+                    UserInfo.UserId = teacher.Data.Id;
+                    return RedirectToAction("Index","Home",new {area="Personel",id= teacher.Data.Id}); // Personel area'ya yönlendirme
                 }
             }
             return View(login);

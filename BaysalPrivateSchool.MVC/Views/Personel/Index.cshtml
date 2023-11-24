@@ -1,5 +1,5 @@
 
-@model List<TeachersWithDepartmentViewModel>
+@model Root<List<TeachersWithDepartmentViewModel>>
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,21 +7,29 @@
 
 
 <h1>Personeller</h1>
-
-@foreach(var person in Model){
+@if(Model .Data != null)
+{
+    @foreach (var person in Model.Data)
+    {
         <div class="card my-card-personel my-card-container my-2 w-100" style="width: 18rem;">
-        <div class="row w-100">
-            <div class="col-sm-3 col-">
-                <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">
-            </div>
-            <div class="col-sm-9 col-">
-                <div class="card-body">
-                    <h5 class="card-title">@person.Name</h5>
-                    <h5 class="card-title">@person.Department.Description</h5>
-                    <p class="card-text">@person.CV</p>
+            <div class="row w-100">
+                <div class="col-sm-3 col-">
+                    <img src="../../wwwroot/img/deneme.png" class="card-img-top" alt="...">
+                </div>
+                <div class="col-sm-9 col-">
+                    <div class="card-body">
+                        <h5 class="card-title">@person.Name</h5>
+                        <h5 class="card-title">@person.Department.Description</h5>
+                        <p class="card-text">@person.CV</p>
+                    </div>
                 </div>
             </div>
         </div>
+    }
+}
+else
+{
+    <div class="d-flex justify-content-center align-items-center my-5">
+        @await Html.PartialAsync("_APIErrorPartial")
     </div>
-
 }

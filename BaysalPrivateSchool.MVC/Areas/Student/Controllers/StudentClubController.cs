@@ -21,7 +21,7 @@ namespace BaysalPrivateSchool.MVC.Areas.Student.Controllers
         public async Task<IActionResult> Apply(int id)
         {
             var studentClubList = await StudentClubDAL.GetStudentClubsWithStudentsAndTeachers();
-            var studentClub = studentClubList.SingleOrDefault(sc => sc.Id == id);
+            var studentClub = studentClubList.Data.SingleOrDefault(sc => sc.Id == id);
             return View(studentClub);
         }
     }

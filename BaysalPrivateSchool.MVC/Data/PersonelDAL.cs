@@ -11,64 +11,98 @@ namespace BaysalPrivateSchool.MVC.Data
 {
     public static class PersonelDAL
     {
-        public static async Task<List<TeachersWithDepartmentViewModel>> GetTeachersWithDepartment()
+        public static async Task<Root<List<TeachersWithDepartmentViewModel>>> GetTeachersWithDepartment()
         {
             Root<List<TeachersWithDepartmentViewModel>> rootTeachersWithDepartment = new Root<List<TeachersWithDepartmentViewModel>>();
-            //var schoolInfo = new SchoolInfoViewModel();
             using (var httpClient = new HttpClient())
             {
-                var response = await httpClient.GetAsync("http://localhost:5156/getTeachersWithDepartment");
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    string contentResponse = await response.Content.ReadAsStringAsync();
-                    rootTeachersWithDepartment = JsonSerializer.Deserialize<Root<List<TeachersWithDepartmentViewModel>>>(contentResponse);
-                    
+                    HttpResponseMessage response = new HttpResponseMessage();
+                    response = await httpClient.GetAsync("http://localhost:5156/getTeachersWithDepartment");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string contentResponse = await response.Content.ReadAsStringAsync();
+                        rootTeachersWithDepartment = JsonSerializer.Deserialize<Root<List<TeachersWithDepartmentViewModel>>>(contentResponse);
+                    }
+                    else
+                    {
+                        rootTeachersWithDepartment.Data = null;
+                        rootTeachersWithDepartment.Error = "Unsuccessfull Connection";
+                    }
                 }
-                else
+                catch (System.Exception)
                 {
-                    rootTeachersWithDepartment = null;
+                    rootTeachersWithDepartment.Data = null;
+                    rootTeachersWithDepartment.Error = "Data uncreachable, Check API connection";
                 }
             }
-            return rootTeachersWithDepartment.Data;
+            return rootTeachersWithDepartment;
         }
 
-        public static async Task<bool> Login(LoginViewModel loginCredentials)
+        public static async Task<Root<bool>> Login(LoginViewModel loginCredentials)
         {
             Root<bool> rootLogin = new Root<bool>();
 
             using (var httpClient = new HttpClient())
             {
-                var serializeLogin = JsonSerializer.Serialize(loginCredentials);
-                StringContent stringContent = new StringContent(serializeLogin, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("http://localhost:5156/loginTeacher", stringContent);
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    string contentResponse = await response.Content.ReadAsStringAsync();
-                    rootLogin = JsonSerializer.Deserialize<Root<bool>>(contentResponse);
-                    if(rootLogin.Data)
+                    var serializeLogin = JsonSerializer.Serialize(loginCredentials);
+                    StringContent stringContent = new StringContent(serializeLogin, Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync("http://localhost:5156/loginTeacher", stringContent);
+                    if (response.IsSuccessStatusCode)
                     {
-                        return true;
+                        string contentResponse = await response.Content.ReadAsStringAsync();
+                        rootLogin = JsonSerializer.Deserialize<Root<bool>>(contentResponse);
+                        return rootLogin;
+                    }
+                    else
+                    {
+                        rootLogin.Data = false;
+                        rootLogin.Error = "Login Failed";
                     }
                 }
+                catch (System.Exception)
+                {
+                    rootLogin.Data = false;
+                    rootLogin.Error = "Data uncreachable, Check API connection";
+                }
+
             }
-            return false;
+            return rootLogin;
         }
-        public static async Task<TeacherViewModel> GetTeacher(LoginViewModel login)
+        public static async Task<Root<TeacherViewModel>> GetTeacher(LoginViewModel login)
         {
             Root<TeacherViewModel> rootTeacher = new Root<TeacherViewModel>();
             using (var httpClient = new HttpClient())
             {
-                var serializeLogin = JsonSerializer.Serialize(login);
-                StringContent stringContent = new StringContent(serializeLogin, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("http://localhost:5156/getTeacherLoginCredentials", stringContent);
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    string contentResponse = await response.Content.ReadAsStringAsync();
-                    rootTeacher = JsonSerializer.Deserialize<Root<TeacherViewModel>>(contentResponse);
-                    return rootTeacher.Data;
+                    HttpResponseMessage response = new HttpResponseMessage();
+                    var serializeLogin = JsonSerializer.Serialize(login);
+                    StringContent stringContent = new StringContent(serializeLogin, Encoding.UTF8, "application/json");
+                    response = await httpClient.PostAsync("http://localhost:5156/getTeacherLoginCredentials", stringContent);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string contentResponse = await response.Content.ReadAsStringAsync();
+                        rootTeacher = JsonSerializer.Deserialize<Root<TeacherViewModel>>(contentResponse);
+                        return rootTeacher;
+                    }
+                    else
+                    {
+                        rootTeacher.Data = null;
+                        rootTeacher.Error = "Unsuccessfull Connection";
+                    }
                 }
+                catch (System.Exception)
+                {
+                    rootTeacher.Data = null;
+                    rootTeacher.Error = "Data uncreachable, Check API connection";
+                }
+                
             }
-            return null;
+            return rootTeacher;
         }
         public static async Task<AddTeacherViewModel> Create(AddTeacherViewModel newTeacher)
         {
@@ -76,9 +110,9 @@ namespace BaysalPrivateSchool.MVC.Data
             using (var httpClient = new HttpClient())
             {
                 var serializeNewTeacher = JsonSerializer.Serialize(newTeacher);
-                StringContent stringContent = new StringContent(serializeNewTeacher,Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("http://localhost:5156/addTeacher",stringContent);
-                if(response.IsSuccessStatusCode)
+                StringContent stringContent = new StringContent(serializeNewTeacher, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync("http://localhost:5156/addTeacher", stringContent);
+                if (response.IsSuccessStatusCode)
                 {
                     string contentResponse = await response.Content.ReadAsStringAsync();
                     rootAddedTeacher = JsonSerializer.Deserialize<Root<AddTeacherViewModel>>(contentResponse);
@@ -90,12 +124,12 @@ namespace BaysalPrivateSchool.MVC.Data
         public static async Task<UpdateTeacherViewModel> Update(UpdateTeacherViewModel updateTeacher)
         {
             var rootUpdatedTeacher = new Root<UpdateTeacherViewModel>();
-            using(var httpClient = new HttpClient())
+            using (var httpClient = new HttpClient())
             {
                 var serializeUpdateTeacher = JsonSerializer.Serialize(updateTeacher);
-                StringContent stringContent = new StringContent(serializeUpdateTeacher,Encoding.UTF8,"application/json");
+                StringContent stringContent = new StringContent(serializeUpdateTeacher, Encoding.UTF8, "application/json");
                 var response = await httpClient.PutAsync("http://localhost:5156/updateTeacher", stringContent);
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     string contentResponse = await response.Content.ReadAsStringAsync();
                     rootUpdatedTeacher = JsonSerializer.Deserialize<Root<UpdateTeacherViewModel>>(contentResponse);
@@ -106,8 +140,8 @@ namespace BaysalPrivateSchool.MVC.Data
         }
         public static async Task<bool> Delete(int id)
         {
-             
-            using(var httpClient = new HttpClient())
+
+            using (var httpClient = new HttpClient())
             {
                 var response = await httpClient.DeleteAsync($"http://localhost:5156/deleteTeacher/{id}");
                 return response.IsSuccessStatusCode;
@@ -116,12 +150,12 @@ namespace BaysalPrivateSchool.MVC.Data
         public static async Task<UpdateTeacherViewModel> GetById(int id)
         {
             var rootTeacher = new Root<UpdateTeacherViewModel>();
-            using(var httpClient = new HttpClient())
+            using (var httpClient = new HttpClient())
             {
                 // var serializeId = JsonSerializer.Serialize(id);
                 // StringContent stringContent = new StringContent(serializeId,Encoding.UTF8,"application/json");
                 var response = await httpClient.GetAsync($"http://localhost:5156/getTeacher/{id}");
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     string contentResponse = await response.Content.ReadAsStringAsync();
                     rootTeacher = JsonSerializer.Deserialize<Root<UpdateTeacherViewModel>>(contentResponse);

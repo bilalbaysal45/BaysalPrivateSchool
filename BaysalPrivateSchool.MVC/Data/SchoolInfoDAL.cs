@@ -9,25 +9,34 @@ namespace BaysalPrivateSchool.MVC.Data
 {
     public static class SchoolInfoDAL
     {
-        public static async Task<SchoolInfoViewModel> GetAllSchoolInfos()
+        public static async Task<Root<SchoolInfoViewModel>> GetAllSchoolInfos()
         {
-            Root<List<SchoolInfoViewModel>> rootSchoolInfos = new Root<List<SchoolInfoViewModel>>();
-            var schoolInfo = new SchoolInfoViewModel();
+            Root<SchoolInfoViewModel> rootSchoolInfos = new Root<SchoolInfoViewModel>();
             using (var httpClient = new HttpClient())
             {
-                var response = await httpClient.GetAsync("http://localhost:5156/getSchoolInfos");
-                if (response.IsSuccessStatusCode)
+                HttpResponseMessage response = new HttpResponseMessage();
+                try
                 {
-                    string contentResponse = await response.Content.ReadAsStringAsync();
-                    rootSchoolInfos = JsonSerializer.Deserialize<Root<List<SchoolInfoViewModel>>>(contentResponse);
-                    schoolInfo = rootSchoolInfos?.Data[0];
+                    response = await httpClient.GetAsync("http://localhost:5156/getSchoolInfos");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string contentResponse = await response.Content.ReadAsStringAsync();
+                        rootSchoolInfos = JsonSerializer.Deserialize<Root<SchoolInfoViewModel>>(contentResponse);
+                    }
+                    else
+                    {
+                        rootSchoolInfos.Data = new SchoolInfoViewModel();
+                        rootSchoolInfos.Error = "Unsuccessfull Connection";
+                    }
                 }
-                else
+                catch (System.Exception)
                 {
-                    rootSchoolInfos = null;
+                    rootSchoolInfos.Data = null;
+                    rootSchoolInfos.Error = "Data uncreachable, Check API connection";
+                    return rootSchoolInfos;
                 }
             }
-            return schoolInfo;
+            return rootSchoolInfos;
         }
     }
 }

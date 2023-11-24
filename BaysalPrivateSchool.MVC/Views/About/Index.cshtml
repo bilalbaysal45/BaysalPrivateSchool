@@ -1,20 +1,29 @@
-@model SchoolInfoViewModel
+@model Root<SchoolInfoViewModel>
 @{
     ViewData["Title"] = "Index";
     // byte resmi string e çevirip gösterme
-    var base64 = Convert.ToBase64String(Model.AboutImage);
-    var imgSrcOrj = String.Format("data:image/jpeg;base64,{0}", base64);
+    string base64 = string.Empty;
+    string imgSrcOrj = string.Empty;
+    if (Model.Data != null)
+    {
+        base64 = Convert.ToBase64String(Model.Data.AboutImage);
+        imgSrcOrj = String.Format("data:image/jpeg;base64,{0}", base64);
+    }
 }
-<h1>About</h1>
-<div class="about-grid">
-    <div class="">
-        <p>@Model.AboutText</p>
+<h1 class="d-flex align-items-center">About</h1>
+@if (@Model.Data != null)
+{
+    <div class="about-grid">
+        <div class="">
+            <p>@Model.Data.AboutText</p>
+        </div>
+        <div class=""><img src="@imgSrcOrj" alt=""></div>
     </div>
-    <div class=""><img src="@imgSrcOrj" alt=""></div>
-</div>
+}
+else
+{
+    <div class="d-flex justify-content-center align-items-center my-5">
+        @await Html.PartialAsync("_APIErrorPartial")
+    </div>
 
-
-
-
-
-
+}

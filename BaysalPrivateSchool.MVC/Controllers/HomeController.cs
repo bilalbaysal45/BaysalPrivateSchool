@@ -9,10 +9,9 @@ public class HomeController : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var studentClubsNews = await StudentClubDAL.GetStudentClubsWithNews(); 
+        var studentClubsNews = await StudentClubDAL.GetStudentClubsWithNews();
         return View(studentClubsNews);
     }
-
     public async Task<IActionResult> Privacy()
     {
         var info = await SchoolInfoDAL.GetAllSchoolInfos();

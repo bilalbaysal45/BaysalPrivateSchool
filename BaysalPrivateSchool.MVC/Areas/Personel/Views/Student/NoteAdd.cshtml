@@ -10,9 +10,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-6">
+        @* <div class="col-lg-6 col-6">
             <label asp-for="Name"></label>
             <input asp-for="Name" type="text" class="form-control">
+        </div> *@
+        <div class="input-group col-lg-6 col-6 mb-2">
+            <label asp-for="Name"></label>
+            <select asp-for="Name" class="form-select mx-2" id="inputGroupSelect01">
+                <option class="deneme" >Midterm</option>
+                <option class="deneme" >Final</option>
+            </select>
         </div>
         <div class="col-lg-6 col-6">
             <label asp-for="Point"></label>

@@ -1,14 +1,14 @@
-@model bool
+@model Root<bool>
 @{
     ViewData["Title"] = "Login";
 }
 
-<div>@if(Model == true)
+<div>@if(Model.Data)
     {
         <div>Login Başarılı</div>
     }
     else
     {
-        <div>Login Başarısız</div>
+        <h2>@Model.Error</h2>
     }
     </div>

@@ -1,4 +1,4 @@
-@model List<StudentClubViewModel>
+@model Root<List<StudentClubViewModel>>
 @{
     ViewData["Title"] = "Index";
     string studentNames = "";
@@ -8,9 +8,10 @@
 
 
 <h1>StudentClubs</h1>
-
-@foreach (var studentClub in Model)
+@if(Model.Data != null)
 {
+    @foreach (var studentClub in Model.Data)
+    {
         <div class="card my-card-container my-card-personel w-100 my-2" style="width: 18rem;">
             <div class="row w-100">
                 <div class="col-sm-2 col-">
@@ -50,6 +51,16 @@
 
             </div>
         </div>
-    {studentNames = "";
-    teacherNames = "";}
+        {
+            studentNames = "";
+            teacherNames = "";
+        }
+    }
 }
+else
+{
+    <div class="d-flex justify-content-center align-items-center my-5">
+        @await Html.PartialAsync("_APIErrorPartial")
+    </div>
+}
+
