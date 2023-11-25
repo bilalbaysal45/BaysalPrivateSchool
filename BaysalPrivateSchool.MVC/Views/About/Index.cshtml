@@ -1,4 +1,4 @@
-@model Root<SchoolInfoViewModel>
+@model Root<List<SchoolInfoViewModel>>
 @{
     ViewData["Title"] = "Index";
     // byte resmi string e çevirip gösterme
@@ -6,7 +6,7 @@
     string imgSrcOrj = string.Empty;
     if (Model.Data != null)
     {
-        base64 = Convert.ToBase64String(Model.Data.AboutImage);
+        base64 = Convert.ToBase64String(Model.Data[0].AboutImage);
         imgSrcOrj = String.Format("data:image/jpeg;base64,{0}", base64);
     }
 }
@@ -15,7 +15,7 @@
 {
     <div class="about-grid">
         <div class="">
-            <p>@Model.Data.AboutText</p>
+            <p>@Model.Data[0].AboutText</p>
         </div>
         <div class=""><img src="@imgSrcOrj" alt=""></div>
     </div>

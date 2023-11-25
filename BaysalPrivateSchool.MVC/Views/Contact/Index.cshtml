@@ -1,4 +1,4 @@
-@model Root<SchoolInfoViewModel>
+@model Root<List<SchoolInfoViewModel>>
 @{
     ViewData["Title"] = "Index";
 }
@@ -17,16 +17,16 @@
             <h1>BaysalPrivateSchool Contact Infotmation</h1>
             <div class="my-contact-item">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>@Model.Data.Note</p>
+                <p>@Model.Data[0].Note</p>
             </div>
             <div class="my-contact-item">
                 <i class="fa-solid fa-phone"></i>
-                <p>@Model.Data.Phone</p>
+                <p>@Model.Data[0].Phone</p>
 
             </div>
             <div class="my-contact-item">
                 <i class="fa-solid fa-envelope"></i>
-                <p>@Model.Data.Mail</p>
+                <p>@Model.Data[0].Mail</p>
 
             </div>
         </div>

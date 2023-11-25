@@ -9,9 +9,9 @@ namespace BaysalPrivateSchool.MVC.Data
 {
     public static class SchoolInfoDAL
     {
-        public static async Task<Root<SchoolInfoViewModel>> GetAllSchoolInfos()
+        public static async Task<Root<List<SchoolInfoViewModel>>> GetAllSchoolInfos()
         {
-            Root<SchoolInfoViewModel> rootSchoolInfos = new Root<SchoolInfoViewModel>();
+            Root<List<SchoolInfoViewModel>> rootSchoolInfos = new Root<List<SchoolInfoViewModel>>();
             using (var httpClient = new HttpClient())
             {
                 HttpResponseMessage response = new HttpResponseMessage();
@@ -21,11 +21,12 @@ namespace BaysalPrivateSchool.MVC.Data
                     if (response.IsSuccessStatusCode)
                     {
                         string contentResponse = await response.Content.ReadAsStringAsync();
-                        rootSchoolInfos = JsonSerializer.Deserialize<Root<SchoolInfoViewModel>>(contentResponse);
+                        rootSchoolInfos = JsonSerializer.Deserialize<Root<List<SchoolInfoViewModel>>>(contentResponse);
+                        return rootSchoolInfos;
                     }
                     else
                     {
-                        rootSchoolInfos.Data = new SchoolInfoViewModel();
+                        rootSchoolInfos.Data = new List<SchoolInfoViewModel>();
                         rootSchoolInfos.Error = "Unsuccessfull Connection";
                     }
                 }
