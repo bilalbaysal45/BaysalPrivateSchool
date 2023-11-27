@@ -13,18 +13,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-6">
-                
-                @* <label asp-for="Name"></label>
-                <input asp-for="Name" type="text" class="form-control">
-                <span class="text-danger" asp-validation-for="Name"></span> *@
+            <div class="col-lg-12 col-12 my-1">
                 <label asp-for="Name"></label>
+            </div>
+            <div class="input-group col-lg-12 col-12 mb-2">
                 <select asp-for="Name" class="form-select mx-2" id="inputGroupSelect01">
                     <option class="deneme">Midterm</option>
                     <option class="deneme">Final</option>
                 </select>
             </div>
-            <div class="col-lg-6 col-6">
+            <div class="col-lg-12 col-12">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="col-lg-6 col-12">
                 <label asp-for="Point"></label>
                 <input asp-for="Point" type="number" class="form-control">
                 <span class="text-danger" asp-validation-for="Point"></span>
@@ -34,7 +35,7 @@
                 <label asp-for="Description"></label>
                 <input asp-for="Description" type="text" class="form-control">
                 <span class="text-danger" asp-validation-for="Description"></span>
-
+                @* Add kısmında readonly olan Description olduda yanlış girilmiş olma ihtimaline karşı update de açık bırakıyorum *@
             </div>
         </div>
         <div class="row">

@@ -10,6 +10,34 @@ namespace BaysalPrivateSchool.MVC.Data
 {
     public static class NoteDAL
     {
+        public static async Task<Root<List<NoteViewModel>>> GetAll()
+        {
+            var rootNoteList = new Root<List<NoteViewModel>>();
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var response = await httpClient.GetAsync("http://localhost:5156/getNotes");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string contentResponse = await response.Content.ReadAsStringAsync();
+                        rootNoteList = JsonSerializer.Deserialize<Root<List<NoteViewModel>>>(contentResponse);
+                        return rootNoteList;
+                    }
+                    else
+                    {
+                        return new Root<List<NoteViewModel>> { Data = null, Error = "Unsuccessfull Connection" };
+                    }
+
+                }
+            }
+            catch (System.Exception)
+            {
+                rootNoteList.Data = null;
+                rootNoteList.Error = "API Unreachable";
+                return rootNoteList;
+            }
+        }
         public static async Task<UpdateNoteViewModel> GeyById(int noteId)
         {
             using(var httpClient = new HttpClient())

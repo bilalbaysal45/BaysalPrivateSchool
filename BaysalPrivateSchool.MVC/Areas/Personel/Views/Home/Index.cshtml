@@ -1,4 +1,4 @@
-@model List<TeachersWithDepartmentViewModel>
+@model Root<List<TeachersWithDepartmentViewModel>>
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,7 +7,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between">
         <p class="card-title">Personel Tables</p>
-        <a asp-area="Personel" asp-controller="Personel" asp-action="Index" class="btn btn-outline-success ">Add Personel</a>
+        <a asp-area="Personel" asp-controller="Personel" asp-action="Create" class="btn btn-outline-success ">Add Personel</a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var teacher in Model)
+                @foreach(var teacher in Model.Data)
                 {
                     <tr>
                         <td>@teacher.Id</td>

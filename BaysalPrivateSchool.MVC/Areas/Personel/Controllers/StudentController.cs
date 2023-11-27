@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BaysalPrivateSchool.MVC.Areas.Personel.Models;
 using BaysalPrivateSchool.MVC.Areas.Student.Models.User;
 using BaysalPrivateSchool.MVC.Data;
+using BaysalPrivateSchool.MVC.Data.CheckProperties;
 using BaysalPrivateSchool.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -32,10 +33,11 @@ namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
             if (ModelState.IsValid)
             {
                 var response = await StudentDAL.Create(addStudent);
-                return View();
+                var students = await StudentDAL.GetAll();
+                return RedirectToAction("Index", students);
+
             }
-            var students = await StudentDAL.GetAll();
-            return RedirectToAction("Index", students);
+            return View(addStudent);
         }
         [HttpGet]
         public async Task<IActionResult> Update(int id)
@@ -49,11 +51,9 @@ namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
             if (ModelState.IsValid)
             {
                 var response = await StudentDAL.Update(updateStudent);
-                // ViewBag.Success = "Success";
-                return RedirectToAction("Update", response.Id);
+                return RedirectToAction("Index");
             }
-            // ViewBag.Error = "Error";
-            return View();
+            return View(updateStudent);
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
@@ -79,24 +79,38 @@ namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
         [HttpPost]
         public async Task<IActionResult> NoteUpdate(UpdateNoteViewModel updateNote)
         {
-            updateNote.StudentId = UserInfo.StudentIdForNote;
-            updateNote.TeacherId = UserInfo.UserId;
-            await NoteDAL.Update(updateNote);
-            return RedirectToAction("Notes");
+            if (await CheckDepartment.IsValid(updateNote.Description) && await CheckNote.IsValid(updateNote.Name) && ModelState.IsValid)
+            {
+                updateNote.StudentId = UserInfo.StudentIdForNote;
+                updateNote.TeacherId = UserInfo.UserId;
+                await NoteDAL.Update(updateNote);
+                return RedirectToAction("Notes");
+            }
+            return View(updateNote);
         }
         [HttpGet]
         public async Task<IActionResult> NoteAdd(int id)
         {
             UserInfo.StudentIdForNote = id;
+            var teacherWithDepartment = await PersonelDAL.GetTeachersWithDepartment();
+            ViewBag.Department = new TeachersWithDepartmentViewModel();
+            ViewBag.Department = teacherWithDepartment.Data.Find(x=>x.Id == UserInfo.UserId);
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> NoteAdd(AddNoteViewModel addNote)
         {
-            addNote.StudentId = UserInfo.StudentIdForNote;
-            addNote.TeacherId = UserInfo.UserId;
-            await NoteDAL.Create(addNote);
-            return RedirectToAction("Notes");
+            if (ModelState.IsValid && await CheckNote.IsValid(addNote.Name))
+            {
+                addNote.StudentId = UserInfo.StudentIdForNote;
+                addNote.TeacherId = UserInfo.UserId;
+                await NoteDAL.Create(addNote);
+                return RedirectToAction("Notes");
+            }
+            var teacherWithDepartment = await PersonelDAL.GetTeachersWithDepartment();
+            ViewBag.Department = new TeachersWithDepartmentViewModel();
+            ViewBag.Department = teacherWithDepartment.Data.Find(x => x.Id == UserInfo.UserId);
+            return View(addNote);
         }
     }
 }

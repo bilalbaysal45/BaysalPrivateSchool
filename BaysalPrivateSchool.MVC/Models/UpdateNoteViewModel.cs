@@ -13,14 +13,14 @@ namespace BaysalPrivateSchool.MVC.Models
         [JsonPropertyName("Id")]
         public int Id { get; set; }
         [JsonPropertyName("Name")]
-        [Required(ErrorMessage = "Write Midterm or Final")]
+        [Required(ErrorMessage ="Midterm or Final")]
         public string Name { get; set; }
         [JsonPropertyName("Description")]
-        [Required(ErrorMessage = "Boş bırakılmamalıdır.")]
+        [Required(ErrorMessage = "Please Enter Your Department(Matematik,Türkce,Biyoloji etc...)")]
         public string Description { get; set; }
         [JsonPropertyName("Point")]
-        [Required(ErrorMessage = "Please Insert Note")]
-        [Range(-1,100)]
+        [Required(ErrorMessage = "Please Enter Score")]
+        [Range(-1,100,ErrorMessage ="Enter Score between -1 and 100")]
         public float Point { get; set; }
         [JsonPropertyName("StudentId")]
         public int StudentId { get; set; }
