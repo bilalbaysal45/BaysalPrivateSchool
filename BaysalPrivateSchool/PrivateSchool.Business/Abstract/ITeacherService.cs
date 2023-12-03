@@ -19,6 +19,7 @@ namespace PrivateSchool.Business.Abstract
         ResponseDto<bool> Login(LoginDto loginDto);
         ResponseDto<TeacherWithClassesAndStudentsDto> GetTeacherWithClassesAndStudents(int id);
         ResponseDto<TeacherDto> GetTeacherWithLoginCredentials(LoginDto loginDto);
+        ResponseDto<StudentClubDto> GetStudentClubWithNewsByTeacherId(int teacherId);
 
     }
 }

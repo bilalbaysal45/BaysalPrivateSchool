@@ -181,5 +181,29 @@ namespace BaysalPrivateSchool.MVC.Data
             }
             return null;
         }
+        public static async Task<Root<StudentClubsNewsViewModel>> GetStudentClubWithNewsByTeacherId(int teacherId)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                try
+                {
+                    var response = await httpClient.GetAsync($"http://localhost:5156/getStudentClubWithNewsByTeacherId/{teacherId}");
+                    if(response.IsSuccessStatusCode)
+                    {
+                        var contentResponse = await response.Content.ReadAsStringAsync();
+                        var rootStudentClubWithNews = JsonSerializer.Deserialize<Root<StudentClubsNewsViewModel>>(contentResponse);
+                        return rootStudentClubWithNews;
+                    }
+                    else
+                    {
+                        return new Root<StudentClubsNewsViewModel>{Data = null,Error="Unsuccessfull Request"};
+                    }
+                }
+                catch (System.Exception)
+                {
+                    return new Root<StudentClubsNewsViewModel>{Data = null,Error="Couldn't Reach API"};
+                }
+            }
+        }
     }
 }

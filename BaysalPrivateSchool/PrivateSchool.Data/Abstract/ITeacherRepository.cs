@@ -12,6 +12,7 @@ namespace PrivateSchool.Data.Abstract
         int? GetTeacherWithDepartmentId(int teacherId);
         Teacher GetTeacherWithClassesAndStudents(int id);
         Teacher GetTeacherWithLoginCredentials(string email, string password);
+        StudentClub GetStudentClubWithNewsByTeacherId(int teacherId);
 
 
     }

@@ -89,5 +89,12 @@ namespace PrivateSchool.API.Controllers
             var jsonResponse = JsonSerializer.Serialize(response, JsonOptionEndLoop.Option());
             return Ok(jsonResponse);
         }
+        [HttpGet("/getStudentClubWithNewsByTeacherId/{id}")]
+        public IActionResult GetStudentClubWithNewsByTeacherId(int id)
+        {
+            var response = _teacherManager.GetStudentClubWithNewsByTeacherId(id);
+            var jsonResponse = JsonSerializer.Serialize(response);
+            return Ok(jsonResponse);
+        }
     }
 }

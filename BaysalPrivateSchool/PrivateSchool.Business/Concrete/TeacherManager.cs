@@ -146,5 +146,23 @@ namespace PrivateSchool.Business.Concrete
             }
             return new ResponseDto<TeacherDto> { Data = null, Error = "Not Found" };
         }
+        public ResponseDto<StudentClubDto> GetStudentClubWithNewsByTeacherId(int teacherId)
+        {
+            
+                var studentClub = _teacherRepository.GetStudentClubWithNewsByTeacherId(teacherId);
+                if (studentClub != null)
+                {
+                    var studentClubDto = _mapper.Map<StudentClubDto>(studentClub);
+                    return new ResponseDto<StudentClubDto> { Data = studentClubDto, Error = null };
+                }
+                else
+                {
+                    return new ResponseDto<StudentClubDto>{Data=null,Error="Not Found"};
+                }
+            
+                return new ResponseDto<StudentClubDto>{Data=null,Error="Data Unreachable"};
+            
+        }
+        
     }
 }

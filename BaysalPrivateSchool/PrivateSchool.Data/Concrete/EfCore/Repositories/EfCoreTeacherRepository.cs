@@ -50,7 +50,12 @@ namespace PrivateSchool.Data.Concrete.EfCore.Repositories
             var teacher = Context.Teachers.Where(t => t.Email == email && t.Password == password).SingleOrDefault();
             return teacher;
         }
-
+        public StudentClub GetStudentClubWithNewsByTeacherId(int teacherId)
+        {
+            var studentClub = Context.StudentClubs.Include(sc=>sc.Teachers).Include(sc=>sc.Students).Include(sc=>sc.StudentClubsNews).ThenInclude(scn=>scn.News).SingleOrDefault(sc=>sc.Teachers.Any(t=>t.Id==teacherId));
+            studentClub.Students.ForEach(s=>s.StudentClub=null);
+            return studentClub;
+        }
 
     }
 }
