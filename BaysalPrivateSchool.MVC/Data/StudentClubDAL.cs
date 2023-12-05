@@ -68,5 +68,29 @@ namespace BaysalPrivateSchool.MVC.Data
 
             return rootStudentClubsNews;
         }
+        public static async Task<Root<StudentClubsNewsViewModel>> GetStudentClubWithNews(int studentClubId)
+        {
+            try
+            {
+                using(var httpClient = new HttpClient())
+                {
+                    var response = await httpClient.GetAsync($"http://localhost:5156/getStudentClubWithNews/{studentClubId}");
+                    if(response.IsSuccessStatusCode)
+                    {
+                        var contentResponse = await response.Content.ReadAsStringAsync();
+                        var studentClubWithNews = JsonSerializer.Deserialize<Root<StudentClubsNewsViewModel>>(contentResponse);
+                        return studentClubWithNews;
+                    }
+                    else
+                    {
+                        return new Root<StudentClubsNewsViewModel>{Data=null,Error = "Unsuccessfull Request"};
+                    }
+                }
+            }
+            catch (System.Exception)
+            {
+                return new Root<StudentClubsNewsViewModel>{Data = null,Error= "Catched Exception"};
+            }
+        }
     }
 }

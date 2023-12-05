@@ -10,5 +10,6 @@ namespace PrivateSchool.Data.Abstract
     {
         List<StudentClub> GetStudentClubsWithStudentsAndTeachers();
         List<StudentClub> GetStudentClubsWithNews();
+        StudentClub GetStudentClubWithNews(int studentClubId);
     }
 }

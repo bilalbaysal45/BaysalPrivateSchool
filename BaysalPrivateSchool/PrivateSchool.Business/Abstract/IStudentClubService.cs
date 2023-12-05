@@ -10,5 +10,6 @@ namespace PrivateSchool.Business.Abstract
     {
         ResponseDto<List<StudentClubDto>> GetStudentClubWithStudentsAndTeachers();
         ResponseDto<List<StudentClubDto>> GetStudentClubsWithNews();
+        ResponseDto<StudentClubDto> GetStudentClubWithNews(int studentClubid);
     }
 }

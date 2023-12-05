@@ -18,5 +18,11 @@ namespace BaysalPrivateSchool.MVC.Areas.Personel.Controllers
             var studentClub = await PersonelDAL.GetStudentClubWithNewsByTeacherId(UserInfo.UserId);
             return View(studentClub);
         }
+        public async Task<IActionResult> AllNews(int id)
+        {
+            var studentClubWithNews = await StudentClubDAL.GetStudentClubWithNews(id);
+            return View(studentClubWithNews);
+        }
+
     }
 }

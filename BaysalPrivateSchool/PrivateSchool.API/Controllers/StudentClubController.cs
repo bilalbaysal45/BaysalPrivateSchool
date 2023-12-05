@@ -30,14 +30,15 @@ namespace PrivateSchool.API.Controllers
         [HttpGet("/getStudentClubsWithNews")]
         public IActionResult GetNewsWithStudentClubs()
         {
-            // JsonSerializerOptions options = new()
-            // {
-            //     ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            //     WriteIndented = true
-            // };
-
             var response = _studentClubManager.GetStudentClubsWithNews();
             var jsonResponse = JsonSerializer.Serialize(response, JsonOptionEndLoop.Option()); // For IgnoreCycles
+            return Ok(jsonResponse);
+        }
+        [HttpGet("/getStudentClubWithNews/{id}")]
+        public IActionResult GetStudentClubWithNews(int id)
+        {
+            var response = _studentClubManager.GetStudentClubWithNews(id);
+            var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
     }

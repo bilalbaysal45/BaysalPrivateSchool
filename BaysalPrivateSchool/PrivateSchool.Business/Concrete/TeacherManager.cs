@@ -148,7 +148,6 @@ namespace PrivateSchool.Business.Concrete
         }
         public ResponseDto<StudentClubDto> GetStudentClubWithNewsByTeacherId(int teacherId)
         {
-            
                 var studentClub = _teacherRepository.GetStudentClubWithNewsByTeacherId(teacherId);
                 if (studentClub != null)
                 {

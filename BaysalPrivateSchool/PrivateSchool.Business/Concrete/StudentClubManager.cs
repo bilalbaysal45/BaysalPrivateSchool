@@ -60,6 +60,17 @@ namespace PrivateSchool.Business.Concrete
                 };
             }
         }
-        
+        public ResponseDto<StudentClubDto> GetStudentClubWithNews(int studentClubid)
+        {
+            var studentClubWithNews = _studentClubRepository.GetStudentClubWithNews(studentClubid);
+            if(studentClubWithNews != null)
+            {
+                return new ResponseDto<StudentClubDto>{Data=_mapper.Map<StudentClubDto>(studentClubWithNews),Error = null};
+            }
+            else
+            {
+                return new ResponseDto<StudentClubDto>{Data=null,Error="Not Found"};
+            }
+        }
     }
 }
