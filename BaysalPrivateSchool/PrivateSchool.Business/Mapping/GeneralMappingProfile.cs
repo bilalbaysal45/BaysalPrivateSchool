@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using PrivateSchool.Entity.Concrete;
 using PrivateSchool.Shared.Dtos;
+using PrivateSchool.Shared.Dtos.NewsDtos;
 using PrivateSchool.Shared.Dtos.NoteDtos;
 using PrivateSchool.Shared.Dtos.StudentDtos;
 
@@ -24,8 +25,11 @@ namespace PrivateSchool.Business.mapping
             CreateMap<Student, AddStudentDto>().ReverseMap();
             CreateMap<Student, UpdateStudentDto>().ReverseMap();
 
+            CreateMap<News, NewsDto>().ReverseMap();
+            CreateMap<News, AddNewsDto>().ReverseMap();
+            CreateMap<News, UpdateNewsDto>().ReverseMap();
+
             CreateMap<SchoolInfo, SchoolInfoDto>().ReverseMap();
-            CreateMap<News, NewsDto>();
             CreateMap<StudentClub, StudentClubDto>().ReverseMap();
             CreateMap<Department, DepartmentDto>().ReverseMap();
 

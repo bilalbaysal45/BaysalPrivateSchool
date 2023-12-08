@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PrivateSchool.API.JsonOptions;
 using PrivateSchool.Business.Abstract;
+using PrivateSchool.Shared.Dtos.NewsDtos;
 
 namespace PrivateSchool.API.Controllers
 {
@@ -25,6 +26,20 @@ namespace PrivateSchool.API.Controllers
         {
             var response = _newsManager.GetById(id);
             var jsonResponse = JsonSerializer.Serialize(response,JsonOptionEndLoop.Option());
+            return Ok(jsonResponse);
+        }
+        [HttpPost("/addNews")]
+        public IActionResult Create(AddNewsDto addNews)
+        {
+            var response = _newsManager.Create(addNews);
+            var jsonResponse = JsonSerializer.Serialize(response);
+            return Ok(jsonResponse);
+        }
+        [HttpPut("/updateNews")]
+        public IActionResult Update(UpdateNewsDto updateNews)
+        {
+            var response = _newsManager.Update(updateNews);
+            var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
     }

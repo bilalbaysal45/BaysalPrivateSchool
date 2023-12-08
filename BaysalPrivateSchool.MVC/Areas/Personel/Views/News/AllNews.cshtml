@@ -7,7 +7,7 @@
 {
     <div class="d-flex justify-content-between align-items-center p-2">
         <h1>@Model.Data.Name News</h1>
-        <a class="btn btn-lg btn-success m-2">Add News</a>
+        <a asp-area="Personel" asp-controller="News" asp-action="Create" class="btn btn-lg btn-success m-2">Add News</a>
     </div>
     @foreach (var news in Model.Data.News)
     {
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col d-flex justify-content-center align-items-center">
-                    <a class="btn btn-lg btn-warning m-2">Update</a>
+                    <a asp-area="Personel" asp-controller="News" asp-action="Update" asp-route-id="@news.Id" class="btn btn-lg btn-warning m-2">Update</a>
                 </div>
             </div>
         </div>

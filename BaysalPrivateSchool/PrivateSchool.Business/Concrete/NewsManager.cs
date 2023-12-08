@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using PrivateSchool.Business.Abstract;
 using PrivateSchool.Data.Abstract;
+using PrivateSchool.Data.Concrete.EfCore.Contexts;
 using PrivateSchool.Data.Concrete.EfCore.Repositories;
+using PrivateSchool.Data.Migrations;
+using PrivateSchool.Entity.Concrete;
 using PrivateSchool.Shared.Dtos;
+using PrivateSchool.Shared.Dtos.NewsDtos;
 
 namespace PrivateSchool.Business.Concrete
 {
@@ -15,11 +19,58 @@ namespace PrivateSchool.Business.Concrete
     {
         private readonly INewsRepository _newsRepository;
         private readonly IMapper _mapper;
+        private readonly IStudentClubsNewsRepository _studentClubsNewsRepository;
 
-        public NewsManager(INewsRepository newsRepository, IMapper mapper)
+        public NewsManager(INewsRepository newsRepository, IMapper mapper,IStudentClubsNewsRepository studentClubsNewsRepository)
         {
             _newsRepository = newsRepository;
             _mapper = mapper;
+            _studentClubsNewsRepository = studentClubsNewsRepository;
+        }
+        public ResponseDto<AddNewsDto> Create(AddNewsDto addNews)
+        {
+            try
+            {
+                if(addNews != null)
+                {
+                    var studentClubNews = new StudentClubsNews();
+                    studentClubNews.StudentClubId = addNews.StudentClubId;
+                    var news = _mapper.Map<News>(addNews);
+                    var response = _newsRepository.Create(news);
+                    studentClubNews.NewsId = response.Id;
+                    _studentClubsNewsRepository.Create(studentClubNews);
+                    return new ResponseDto<AddNewsDto>{Data = addNews,Error=null};
+                }
+                else
+                {
+                    return new ResponseDto<AddNewsDto>{Data=null,Error="Data's null"};
+                }
+            }
+            catch (System.Exception)
+            {
+                return new ResponseDto<AddNewsDto>{Data=null,Error="Data couldn't Created."};
+            }
+        }
+        public ResponseDto<UpdateNewsDto> Update(UpdateNewsDto updateNews)
+        {
+            try
+            {
+                if (updateNews != null)
+                {
+                    var news = _mapper.Map<News>(updateNews);
+                    news.ModifiedDate = DateTime.Now;
+                    var response = _newsRepository.Update(news);
+                    return new ResponseDto<UpdateNewsDto> { Data = _mapper.Map<UpdateNewsDto>(response), Error = null };
+                }
+                else
+                {
+                    return new ResponseDto<UpdateNewsDto> { Data = null, Error = "Data's null" };
+                }
+            }
+            catch (System.Exception)
+            {
+                return new ResponseDto<UpdateNewsDto> { Data = null, Error = "Data couldn't Created." };
+            }
         }
 
         public ResponseDto<NewsDto> GetById(int id)
